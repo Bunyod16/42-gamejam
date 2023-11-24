@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://k11bytu5htnp"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_fjlgf"]
+[ext_resource type="Texture2D" uid="uid://bj4ph1berpr1n" path="res://assets/cowboy/CowBoyWalking.png" id="1_suglm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bful"]
+atlas = ExtResource("1_suglm")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgxqg"]
+atlas = ExtResource("1_suglm")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecw03"]
+atlas = ExtResource("1_suglm")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teyoy"]
+atlas = ExtResource("1_suglm")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33toy"]
+atlas = ExtResource("1_suglm")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrqex"]
+atlas = ExtResource("1_suglm")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d34tm"]
+atlas = ExtResource("1_suglm")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6le7"]
+atlas = ExtResource("1_suglm")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1c0l2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bful")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgxqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecw03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33toy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrqex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d34tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6le7")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
+size = Vector2(34, 79)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_fjlgf")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1c0l2")
+animation = &"walking"
+frame = 1
+frame_progress = 0.196058
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 9.5)
+shape = SubResource("RectangleShape2D_u4uyd")
