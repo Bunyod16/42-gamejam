@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://k11bytu5htnp"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_fjlgf"]
+[ext_resource type="Script" path="res://player.gd" id="1_q1pry"]
 [ext_resource type="Texture2D" uid="uid://bj4ph1berpr1n" path="res://assets/cowboy/CowBoyWalking.png" id="1_suglm"]
 [ext_resource type="Texture2D" uid="uid://tp7u4rkyj2jc" path="res://assets/cowboy/CowBoyIdle.png" id="2_75i3g"]
 
@@ -127,7 +127,7 @@ size = Vector2(34, 79)
 
 [node name="Player" type="Area2D"]
 position = Vector2(10, 4)
-script = ExtResource("1_fjlgf")
+script = ExtResource("1_q1pry")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

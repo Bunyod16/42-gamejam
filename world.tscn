@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://kvgk4xc6u3vc"]
+[gd_scene load_steps=13 format=3 uid="uid://bwpiecgcv0ilm"]
 
 [ext_resource type="Texture2D" uid="uid://dwoko7770vhma" path="res://assets/tilemap/spritesheet.png" id="1_6nqet"]
 [ext_resource type="PackedScene" uid="uid://k11bytu5htnp" path="res://player.tscn" id="2_c68e3"]
+[ext_resource type="PackedScene" uid="uid://dbxj4jvvd16fl" path="res://Diggable.tscn" id="3_1d44m"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lsrw2"]
 tile_data = PackedInt32Array(0, 0, 5, 65536, 65536, 5)
@@ -406,7 +407,6 @@ texture_region_size = Vector2i(32, 32)
 10:10/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6muag"]
-load_path = "res://.godot/imported/ISO - Set 1.png-7d80eac5a8531e0484e22ec6be972312.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lmqte"]
 texture = SubResource("CompressedTexture2D_6muag")
@@ -6618,3 +6618,6 @@ scale = Vector2(0.504858, 0.504858)
 
 [node name="Player3" parent="." instance=ExtResource("2_c68e3")]
 position = Vector2(998, 131)
+
+[node name="Diggable" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(2475, 1877)
