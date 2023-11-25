@@ -21,6 +21,7 @@ func _process(delta):
 	if is_being_digged:
 		cooldown_timer -= delta
 		$Progress.value = (digging_time_required - cooldown_timer) / digging_time_required * 100
+		play_digging_sound()
 	if cooldown_timer <= 0.0:
 		print("digging completed")
 		# spawn a Gold towards the direction of Player (the first digging Player for now)
@@ -61,3 +62,7 @@ func spawn_gold_towards_player(player: Player):
 	gold.global_position = global_position # Start at Diggable's position
 	gold.set_target(player.global_position)
 
+func play_digging_sound():
+	if not $AudioStreamPlayer2D.playing:
+		$AudioStreamPlayer2D.play()
+	
