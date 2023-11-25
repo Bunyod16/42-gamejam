@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://baq8w57hjuhq3"]
+[gd_scene load_steps=7 format=3 uid="uid://woob06sxfeee"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_4bwjt"]
 [ext_resource type="PackedScene" path="res://basic_player.tscn" id="2_ibgny"]
 [ext_resource type="Theme" uid="uid://l82ee7rv5w7q" path="res://ui/ui.tres" id="3_lkl8u"]
 [ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="4_y7hmr"]
 [ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="5_bfe8h"]
-[ext_resource type="PackedScene" path="res://tilemap.tscn" id="6_an8v7"]
+[ext_resource type="Texture2D" uid="uid://73xoxx8d2r5w" path="res://assets/images/MainMenuBackground.png" id="7_bqjhq"]
 
 [node name="multiplayer_test" type="Control"]
 layout_mode = 3
@@ -13,10 +13,20 @@ anchors_preset = 0
 script = ExtResource("1_4bwjt")
 player_scene = ExtResource("2_ibgny")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+z_as_relative = false
+custom_minimum_size = Vector2(800, 600)
+offset_right = 1533.0
+offset_bottom = 923.0
+scale = Vector2(0.52, 0.65)
+texture = ExtResource("7_bqjhq")
+
 [node name="Transparency" type="Panel" parent="."]
+z_index = -1
 layout_mode = 0
-offset_right = 1392.0
-offset_bottom = 784.0
+offset_right = 800.0
+offset_bottom = 600.0
 
 [node name="MainMenuVContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
@@ -76,9 +86,6 @@ theme = ExtResource("3_lkl8u")
 placeholder_text = "Type Host IP"
 clear_button_enabled = true
 caret_blink = true
-
-[node name="Tilemap" parent="." instance=ExtResource("6_an8v7")]
-z_index = -100
 
 [connection signal="pressed" from="MainMenuVContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MainMenuVContainer/Join" to="." method="_on_join_pressed"]

@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
-window/size/mode=2
 window/size/initial_position_type=0
 window/main_scene="res://player.tscn"
 window/defaults/default_clear_color=Color(0.3, 0.3, 0.3, 1)

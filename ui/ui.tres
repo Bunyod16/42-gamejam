@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://l82ee7rv5w7q"]
 
-[ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="1_vfm6g"]
-[ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="2_cyt7a"]
+[ext_resource type="FontFile" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="1_vfm6g"]
+[ext_resource type="FontFile" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="2_cyt7a"]
 [ext_resource type="StyleBox" uid="uid://ddmnhxd8i2xu1" path="res://ui/StyleBoxes/AltMainStyleBox.tres" id="2_fw46b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k54wx"]
