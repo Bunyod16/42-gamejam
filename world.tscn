@@ -172,11 +172,11 @@ pattern_3 = SubResource("TileMapPattern_o5jje")
 pattern_4 = SubResource("TileMapPattern_y626u")
 
 [node name="World" type="Node2D"]
-position = Vector2(89, 39)
+position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-31, 167)
-scale = Vector2(2, 2)
+position = Vector2(134, 433)
+scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_435ju")
 collision_animatable = true
 collision_visibility_mode = 1
