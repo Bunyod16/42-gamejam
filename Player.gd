@@ -10,7 +10,8 @@ var on_hand_walking_sprite : Sprite2D
 const shovel_texture = preload("res://assets/cowboy/Shovel.png")
 const lasso_texture = preload("res://assets/cowboy/Lasso.png")
 
-signal dig_action(player, diggable_area)
+# signal dig_action(player, diggable_area)
+signal dig_action(player)
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -32,27 +33,28 @@ func _input(InputEvent):
 	if Input.is_action_just_pressed("ui_accept"):
 		print("space pressed")
 		use_weapon()
-		
+
 	if Input.is_action_just_pressed("equip_shovel"):
 		change_hand_item(shovel_texture)
-	
+
 	if Input.is_action_just_pressed("equip_lasso"):
 		change_hand_item(lasso_texture)
-	
+
 
 # handles Player being in a Diggable area
 # var is_inside_diggable_area: bool = false
-var current_diggable_area: Area2D = null
+# var current_diggable_area: Area2D = null
 
-func _on_area_entered(area):
-	if area.is_in_group("diggable"):
-		current_diggable_area = area
-		# is_inside_diggable_area = true
+# func _on_body_entered(area):
+# 	if area.is_in_group("diggable"):
+# 		print("entered area")
+# 		current_diggable_area = area
+# 		# is_inside_diggable_area = true
 
-func _on_area_exited(area):
-	if area.is_in_group("diggable"):
-		current_diggable_area = null
-		# is_inside_diggable_area = false
+# func _on_body_exited(area):
+# 	if area.is_in_group("diggable"):
+# 		current_diggable_area = null
+# 		# is_inside_diggable_area = false
 
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -79,9 +81,10 @@ func _process(delta):
 	move_and_collide(velocity)
 
 	# dig
-	if current_diggable_area and Input.is_action_just_pressed("dig"):
-		print("Emitting")
-		dig_action.emit(self, current_diggable_area)
+	# if current_diggable_area and Input.is_action_just_pressed("dig"):
+	if Input.is_action_just_pressed("dig"):
+		# print("Emitting")
+		dig_action.emit(self)
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
