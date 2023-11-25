@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://b6ahe261jxno1"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_fnp8s"]
+[ext_resource type="Script" path="res://Player.gd" id="1_q1pry"]
 [ext_resource type="Texture2D" uid="uid://b5y8k5a8tcgoj" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
 [ext_resource type="Texture2D" uid="uid://p7tdo5oeq0vv" path="res://assets/cowboy/CowBoyIdleBody.png" id="4_6reyk"]
-[ext_resource type="Texture2D" uid="uid://4gprkeh27jq0" path="res://assets/cowboy/Shovel.png" id="5_i5rmw"]
+[ext_resource type="Texture2D" uid="uid://c8v76hu8w08na" path="res://assets/cowboy/Shovel.png" id="5_i5rmw"]
 [ext_resource type="Texture2D" uid="uid://d38gnlwqk2htw" path="res://assets/cowboy/CowBoyIdleHat.png" id="5_o3xsi"]
 [ext_resource type="Texture2D" uid="uid://cunn201cv18ir" path="res://assets/cowboy/CowBoyWalkingHat.png" id="5_uqpnb"]
 [ext_resource type="Texture2D" uid="uid://b5okado12q076" path="res://assets/cowboy/CowBoyIdleArm.png" id="6_44jef"]
@@ -608,17 +608,11 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
-size = Vector2(34, 79)
+size = Vector2(18, 14)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aarcm"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-
-[node name="Player" type="Area2D"]
-position = Vector2(10, 4)
-script = ExtResource("1_fnp8s")
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(13, 4)
+script = ExtResource("1_q1pry")
 metadata/_edit_group_ = true
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -626,11 +620,13 @@ metadata/_edit_group_ = true
 [node name="BodyIdleSprite" type="Sprite2D" parent="Sprites"]
 visible = false
 texture = ExtResource("4_6reyk")
+offset = Vector2(0, -15)
 hframes = 7
 
 [node name="HatIdleSprite" type="Sprite2D" parent="Sprites"]
 visible = false
 texture = ExtResource("5_o3xsi")
+offset = Vector2(0, -15)
 hframes = 7
 
 [node name="OnHandIdleSprite" type="Sprite2D" parent="Sprites"]
@@ -639,20 +635,24 @@ position = Vector2(-4, 11)
 rotation = -2.55011
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_i5rmw")
+offset = Vector2(6, 34)
 
 [node name="ArmIdleSprite" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("6_44jef")
+offset = Vector2(0, -15)
 hframes = 7
 
 [node name="BodyWalkingSprite" type="Sprite2D" parent="Sprites"]
 visible = false
 texture = ExtResource("3_2xovu")
+offset = Vector2(0, -15)
 hframes = 8
 frame = 1
 
 [node name="HatWalkingSprite" type="Sprite2D" parent="Sprites"]
 visible = false
 texture = ExtResource("5_uqpnb")
+offset = Vector2(0, -15)
 hframes = 8
 
 [node name="OnHandWalkingSprite" type="Sprite2D" parent="Sprites"]
@@ -661,10 +661,12 @@ position = Vector2(-4, 10)
 rotation = -2.55011
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_i5rmw")
+offset = Vector2(6, 34)
 
 [node name="ArmWalkingSprite" type="Sprite2D" parent="Sprites"]
 visible = false
 texture = ExtResource("8_o1qh0")
+offset = Vector2(0, -15)
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
@@ -674,8 +676,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, 9.5)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_u4uyd")
 
 [node name="Cooldown" type="ProgressBar" parent="."]
@@ -686,8 +687,10 @@ offset_bottom = -24.0
 scale = Vector2(0.59354, 0.220983)
 show_percentage = false
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_aarcm")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 120
+limit_top = 60
+limit_right = 1600
+limit_bottom = 950
+position_smoothing_enabled = true
