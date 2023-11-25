@@ -22,7 +22,7 @@ scale = Vector2(0.504858, 0.504858)
 [node name="Player3" parent="." instance=ExtResource("2_c68e3")]
 position = Vector2(998, 131)
 
-[node name="Diggable" parent="." instance=ExtResource("3_1d44m")]
-position = Vector2(2475, 1877)
-
 [node name="Tilemap" parent="." instance=ExtResource("3_vsk5u")]
+
+[node name="Diggable" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(359, 153)
