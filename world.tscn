@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwpiecgcv0ilm"]
+[gd_scene load_steps=10 format=3 uid="uid://bwpiecgcv0ilm"]
 
 [ext_resource type="Texture2D" uid="uid://dwoko7770vhma" path="res://assets/tilemap/spritesheet.png" id="1_6nqet"]
+[ext_resource type="PackedScene" uid="uid://k11bytu5htnp" path="res://player.tscn" id="2_c68e3"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lsrw2"]
 tile_data = PackedInt32Array(0, 0, 5, 65536, 65536, 5)
@@ -96,8 +97,10 @@ texture_region_size = Vector2i(32, 32)
 3:5/0/texture_origin = Vector2i(0, 7)
 4:5/0 = 0
 4:5/0/texture_origin = Vector2i(0, 7)
+4:5/0/y_sort_origin = 1
 5:5/0 = 0
 5:5/0/texture_origin = Vector2i(0, 7)
+5:5/0/y_sort_origin = 1
 6:5/0 = 0
 7:5/0 = 0
 8:5/0 = 0
@@ -172,8 +175,11 @@ pattern_4 = SubResource("TileMapPattern_y626u")
 position = Vector2(89, 39)
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-1, -45)
+position = Vector2(-31, 167)
+scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_435ju")
+collision_animatable = true
+collision_visibility_mode = 1
 format = 2
 layer_0/name = "Background Terrain"
 layer_0/z_index = -1
@@ -199,3 +205,6 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(-196601, 655360, 3, -131064, 655360, 3, 8, 655360, 3, 65544, 655360, 3, 3, 0, 4, -65534, 131072, 4, -196605, 0, 4, -65533, 0, 4, -196602, 262144, 4, 262152, 262144, 4, -196603, 327680, 4, -262138, 327680, 4)
+
+[node name="Player" parent="." instance=ExtResource("2_c68e3")]
+position = Vector2(287, 122)

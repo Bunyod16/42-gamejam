@@ -16,11 +16,19 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
-	position += velocity * delta
+	
+	var isometric_velocity = Vector2(
+		velocity.x - velocity.y,
+		(velocity.x + velocity.y) / 2
+	)
+	
+#	position += velocity * delta
+	position += isometric_velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
