@@ -25,6 +25,8 @@ func _on_host_pressed():
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
 	
+	#Send host information
+	print("host unique id"+  str(multiplayer.get_unique_id()))
 	send_player_information(multiplayer.get_unique_id(), "name")
 	
 	print("HOST IP:" + ip_address)
@@ -47,8 +49,9 @@ func _on_start_pressed():
 func peer_connected(id):
 	print("Peer Connected:" + str(id))
 
-func connected_to_server(id):
-	print("Peer Connected To Server:" + str(id))
+func connected_to_server():
+	print("Peer Connected To Server")
+	#Send Player Information
 	send_player_information.rpc_id(1, multiplayer.get_unique_id(), "name")
 
 #Adds player to scene
@@ -110,4 +113,5 @@ func send_player_information(id, name):
 		
 	if multiplayer.is_server():
 		for i in GameManager.Players:
+			print("i:" + str(i))
 			send_player_information.rpc(i, GameManager.Players[i].name)

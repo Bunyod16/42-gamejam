@@ -1,21 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwpiecgcv0ilm"]
+[gd_scene load_steps=5 format=3 uid="uid://bwpiecgcv0ilm"]
 
+[ext_resource type="Script" path="res://WorldManager.gd" id="1_opner"]
 [ext_resource type="PackedScene" uid="uid://b6ahe261jxno1" path="res://Player.tscn" id="2_c68e3"]
 [ext_resource type="PackedScene" uid="uid://vh5ix74uqj02" path="res://Diggable.tscn" id="3_1d44m"]
-[ext_resource type="PackedScene" uid="uid://bw113t8ykxaqt" path="res://tilemap.tscn" id="3_vsk5u"]
+[ext_resource type="PackedScene" path="res://tilemap.tscn" id="3_vsk5u"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(89, 39)
+script = ExtResource("1_opner")
+PlayerScene = ExtResource("2_c68e3")
 metadata/_edit_horizontal_guides_ = []
-
-[node name="Player" parent="." instance=ExtResource("2_c68e3")]
-position = Vector2(998, 131)
 
 [node name="Diggable" parent="." instance=ExtResource("3_1d44m")]
 position = Vector2(2475, 1877)
 
 [node name="Tilemap" parent="." instance=ExtResource("3_vsk5u")]
 
-[node name="Diggable" parent="." instance=ExtResource("3_1d44m")]
+[node name="Diggable2" parent="." instance=ExtResource("3_1d44m")]
 position = Vector2(359, 153)
+
+[node name="SpawnLocations" type="Node2D" parent="."]
+position = Vector2(126, 120)
+
+[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoints"]]
+position = Vector2(100, 100)
+
+[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoints"]]
+position = Vector2(1200, 600)
