@@ -11,7 +11,7 @@ const shovel_texture = preload("res://assets/cowboy/Shovel.png")
 const lasso_texture = preload("res://assets/cowboy/Lasso.png")
 
 # signal dig_action(player, diggable_area)
-signal dig_action(player)
+signal dig_action(player: Player)
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -128,3 +128,8 @@ func update_cooldown(delta):
 func on_cooldown_finished():
 	$Cooldown.hide()
 	cooldown_timer = 0.0
+
+
+# Gold collection
+func handle_collect_gold():
+	print("Collecting gold!!")
