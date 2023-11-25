@@ -1,13 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://kl7qyamee747"]
+[gd_scene load_steps=14 format=3 uid="uid://b6ahe261jxno1"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_q1pry"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/CowBoyIdleBody.png" id="4_6reyk"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/Shovel.png" id="5_i5rmw"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/CowBoyIdleHat.png" id="5_o3xsi"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/CowBoyWalkingHat.png" id="5_uqpnb"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/CowBoyIdleArm.png" id="6_44jef"]
-[ext_resource type="Texture2D" path="res://assets/cowboy/CowBoyWalkingArm.png" id="8_o1qh0"]
+[ext_resource type="Texture2D" uid="uid://b5y8k5a8tcgoj" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
+[ext_resource type="Texture2D" uid="uid://p7tdo5oeq0vv" path="res://assets/cowboy/CowBoyIdleBody.png" id="4_6reyk"]
+[ext_resource type="Texture2D" uid="uid://4gprkeh27jq0" path="res://assets/cowboy/Shovel.png" id="5_i5rmw"]
+[ext_resource type="Texture2D" uid="uid://d38gnlwqk2htw" path="res://assets/cowboy/CowBoyIdleHat.png" id="5_o3xsi"]
+[ext_resource type="Texture2D" uid="uid://cunn201cv18ir" path="res://assets/cowboy/CowBoyWalkingHat.png" id="5_uqpnb"]
+[ext_resource type="Texture2D" uid="uid://b5okado12q076" path="res://assets/cowboy/CowBoyIdleArm.png" id="6_44jef"]
+[ext_resource type="Texture2D" uid="uid://do1rd2mn0ryt0" path="res://assets/cowboy/CowBoyWalkingArm.png" id="8_o1qh0"]
 
 [sub_resource type="Animation" id="Animation_7y4uk"]
 resource_name = "IdleRight"
