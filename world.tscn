@@ -10,17 +10,7 @@ position = Vector2(89, 39)
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Player" parent="." instance=ExtResource("2_c68e3")]
-position = Vector2(461, 364)
-scale = Vector2(0.405114, -0.146415)
-disable_mode = 1
-speed = 200
-
-[node name="Player2" parent="." instance=ExtResource("2_c68e3")]
-position = Vector2(1647, 397)
-scale = Vector2(0.504858, 0.504858)
-
-[node name="Player3" parent="." instance=ExtResource("2_c68e3")]
-position = Vector2(998, 131)
+position = Vector2(631, 617)
 
 [node name="Tilemap" parent="." instance=ExtResource("3_vsk5u")]
 
