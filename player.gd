@@ -1,8 +1,11 @@
+class_name Player
 extends Area2D
 
 var x_direction = 1
 var current_animation = null
 var animation : AnimationPlayer
+
+signal dig_action(player, diggable_area)
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -19,6 +22,20 @@ func _input(InputEvent):
 	if Input.is_action_just_pressed("ui_accept"):
 		print("space pressed")
 		use_weapon()
+
+# handles Player being in a Diggable area
+# var is_inside_diggable_area: bool = false
+var current_diggable_area: Area2D = null
+
+func _on_area_entered(area):
+	if area.is_in_group("diggable"):
+		current_diggable_area = area
+		# is_inside_diggable_area = true
+
+func _on_area_exited(area):
+	if area.is_in_group("diggable"):
+		current_diggable_area = null
+		# is_inside_diggable_area = false
 
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -43,6 +60,10 @@ func _process(delta):
 			$Sprites.scale = Vector2(1,1)
 		velocity.y -= 1
 
+	# dig
+	if current_diggable_area and Input.is_action_just_pressed("dig"):
+		print("Emitting")
+		dig_action.emit(self, current_diggable_area)
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bwpiecgcv0ilm"]
 
 [ext_resource type="Texture2D" uid="uid://dwoko7770vhma" path="res://assets/tilemap/spritesheet.png" id="1_6nqet"]
-[ext_resource type="PackedScene" uid="uid://k11bytu5htnp" path="res://player.tscn" id="2_c68e3"]
+[ext_resource type="PackedScene" uid="uid://kl7qyamee747" path="res://Player.tscn" id="2_c68e3"]
 [ext_resource type="PackedScene" uid="uid://dbxj4jvvd16fl" path="res://Diggable.tscn" id="3_1d44m"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_lsrw2"]

@@ -679,3 +679,6 @@ offset_right = 58.0
 offset_bottom = -24.0
 scale = Vector2(0.59354, 0.220983)
 show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
