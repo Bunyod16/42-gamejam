@@ -78,6 +78,7 @@ func _process(delta):
 			x_direction = 1;
 			$Sprites.scale = Vector2(1,1)
 		velocity.y -= 1
+	move_and_collide(velocity)
 
 	# dig
 	# if current_diggable_area and Input.is_action_just_pressed("dig"):
@@ -92,13 +93,7 @@ func _process(delta):
 	else:
 		animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
-	var isometric_velocity = Vector2(
-		velocity.x - velocity.y,
-		(velocity.x + velocity.y) / 2
-	)
 
-#	position += velocity * delta
-	position += isometric_velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 	update_cooldown(delta)
