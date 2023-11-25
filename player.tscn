@@ -1,7 +1,36 @@
-[gd_scene load_steps=13 format=3 uid="uid://k11bytu5htnp"]
+[gd_scene load_steps=21 format=3 uid="uid://k11bytu5htnp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_fjlgf"]
 [ext_resource type="Texture2D" uid="uid://bj4ph1berpr1n" path="res://assets/cowboy/CowBoyWalking.png" id="1_suglm"]
+[ext_resource type="Texture2D" uid="uid://tp7u4rkyj2jc" path="res://assets/cowboy/CowBoyIdle.png" id="2_75i3g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg2ik"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fah7o"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ihxm"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46m5s"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsxnm"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plwnn"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr511"]
+atlas = ExtResource("2_75i3g")
+region = Rect2(288, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bful"]
 atlas = ExtResource("1_suglm")
@@ -37,6 +66,32 @@ region = Rect2(336, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1c0l2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg2ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fah7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ihxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46m5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsxnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plwnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr511")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4bful")
@@ -77,8 +132,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1c0l2")
-animation = &"walking"
-frame_progress = 0.779894
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 9.5)
