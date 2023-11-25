@@ -610,7 +610,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
 size = Vector2(34, 79)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2(10, 4)
 script = ExtResource("1_q1pry")
 metadata/_edit_group_ = true
@@ -679,6 +679,3 @@ offset_right = 58.0
 offset_bottom = -24.0
 scale = Vector2(0.59354, 0.220983)
 show_percentage = false
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]

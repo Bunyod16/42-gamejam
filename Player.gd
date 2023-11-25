@@ -1,5 +1,5 @@
 class_name Player
-extends Area2D
+extends CharacterBody2D
 
 var x_direction = 1
 var current_animation = null
