@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bvovaeyt3tos7"]
+[gd_scene load_steps=4 format=3 uid="uid://bvovaeyt3tos7"]
 
-[node name="Gold" type="Node2D"]
+[ext_resource type="Script" path="res://Gold.gd" id="1_0q76v"]
+[ext_resource type="Texture2D" uid="uid://blm8kumtp58b0" path="res://assets/tilemap/Atlas.png" id="1_hmsn0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ul24"]
+
+[node name="Gold" type="Area2D"]
+script = ExtResource("1_0q76v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hmsn0")
+region_enabled = true
+region_rect = Rect2(96.9012, 450.472, 14.6029, 13.1665)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5ul24")
