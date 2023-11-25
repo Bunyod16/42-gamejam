@@ -1,4 +1,3 @@
-class_name Player
 extends Area2D
 
 var x_direction = 1
