@@ -4,15 +4,25 @@ extends Area2D
 var x_direction = 1
 var current_animation = null
 var animation : AnimationPlayer
+var on_hand_idle_sprite : Sprite2D
+var on_hand_walking_sprite : Sprite2D
+
+const shovel_texture = preload("res://assets/cowboy/Shovel.png")
+const lasso_texture = preload("res://assets/cowboy/Lasso.png")
 
 signal dig_action(player, diggable_area)
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	animation = $Sprites/AnimationPlayer
-
+	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
+	on_hand_walking_sprite = $Sprites/OnHandWalkingSprite
 	# Play the idle animation when the scene starts
 	animation.play("IdleRight")
+
+func change_hand_item(texture: Texture):
+	on_hand_idle_sprite.texture = texture
+	on_hand_walking_sprite.texture = texture
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
@@ -22,6 +32,13 @@ func _input(InputEvent):
 	if Input.is_action_just_pressed("ui_accept"):
 		print("space pressed")
 		use_weapon()
+		
+	if Input.is_action_just_pressed("equip_shovel"):
+		change_hand_item(shovel_texture)
+	
+	if Input.is_action_just_pressed("equip_lasso"):
+		change_hand_item(lasso_texture)
+	
 
 # handles Player being in a Diggable area
 # var is_inside_diggable_area: bool = false

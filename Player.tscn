@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player.gd" id="1_q1pry"]
 [ext_resource type="Texture2D" uid="uid://b5y8k5a8tcgoj" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
 [ext_resource type="Texture2D" uid="uid://p7tdo5oeq0vv" path="res://assets/cowboy/CowBoyIdleBody.png" id="4_6reyk"]
-[ext_resource type="Texture2D" uid="uid://4gprkeh27jq0" path="res://assets/cowboy/Shovel.png" id="5_i5rmw"]
+[ext_resource type="Texture2D" uid="uid://c8v76hu8w08na" path="res://assets/cowboy/Shovel.png" id="5_i5rmw"]
 [ext_resource type="Texture2D" uid="uid://d38gnlwqk2htw" path="res://assets/cowboy/CowBoyIdleHat.png" id="5_o3xsi"]
 [ext_resource type="Texture2D" uid="uid://cunn201cv18ir" path="res://assets/cowboy/CowBoyWalkingHat.png" id="5_uqpnb"]
 [ext_resource type="Texture2D" uid="uid://b5okado12q076" path="res://assets/cowboy/CowBoyIdleArm.png" id="6_44jef"]
