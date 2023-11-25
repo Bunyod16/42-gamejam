@@ -6,6 +6,10 @@ var animation : AnimationPlayer
 
 signal dig_action(player, diggable_area)
 
+func _enter_tree():
+	print("name: " + name)
+	set_multiplayer_authority(name.to_int())
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	animation = $Sprites/AnimationPlayer

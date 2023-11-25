@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://l82ee7rv5w7q"]
 
-[ext_resource type="FontFile" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="1_vfm6g"]
-[ext_resource type="FontFile" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="2_cyt7a"]
+[ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="1_vfm6g"]
+[ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="2_cyt7a"]
 [ext_resource type="StyleBox" uid="uid://ddmnhxd8i2xu1" path="res://ui/StyleBoxes/AltMainStyleBox.tres" id="2_fw46b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k54wx"]
@@ -40,6 +40,7 @@ Button/constants/outline_size = 8
 Button/font_sizes/font_size = 128
 Button/fonts/font = ExtResource("1_vfm6g")
 Button/styles/normal = ExtResource("2_fw46b")
+HBoxContainer/constants/separation = 80
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/line_spacing = 3

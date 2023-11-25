@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://woob06sxfeee"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_4bwjt"]
-[ext_resource type="PackedScene" path="res://basic_player.tscn" id="2_ibgny"]
+[ext_resource type="PackedScene" uid="uid://b6ahe261jxno1" path="res://Player.tscn" id="2_y8gjh"]
 [ext_resource type="Theme" uid="uid://l82ee7rv5w7q" path="res://ui/ui.tres" id="3_lkl8u"]
 [ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="4_y7hmr"]
 [ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="5_bfe8h"]
@@ -11,12 +11,13 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_4bwjt")
-player_scene = ExtResource("2_ibgny")
+player_scene = ExtResource("2_y8gjh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
 z_as_relative = false
 custom_minimum_size = Vector2(800, 600)
+layout_mode = 0
 offset_right = 1533.0
 offset_bottom = 923.0
 scale = Vector2(0.52, 0.65)
@@ -60,8 +61,16 @@ theme_override_font_sizes/font_size = 48
 text = "Join
 "
 
+[node name="Start" type="Button" parent="MainMenuVContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_lkl8u")
+theme_override_fonts/font = ExtResource("5_bfe8h")
+theme_override_font_sizes/font_size = 48
+text = "Start"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://basic_player.tscn")
+_spawnable_scenes = PackedStringArray("res://Player.tscn")
 spawn_path = NodePath("..")
 
 [node name="IpPopup" type="RichTextLabel" parent="."]
@@ -72,6 +81,18 @@ offset_top = 64.0
 offset_right = 600.0
 offset_bottom = 164.0
 theme = ExtResource("3_lkl8u")
+fit_content = true
+scroll_active = false
+
+[node name="WaitingForHost" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 200.0
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 164.0
+theme = ExtResource("3_lkl8u")
+text = "Waiting for host to start..."
 fit_content = true
 scroll_active = false
 
@@ -89,4 +110,6 @@ caret_blink = true
 
 [connection signal="pressed" from="MainMenuVContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MainMenuVContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="MainMenuVContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="text_submitted" from="IpInput" to="." method="_on_ip_input_text_submitted"]

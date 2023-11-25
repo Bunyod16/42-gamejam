@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ra3gmpaqk47"]
+
+[ext_resource type="Theme" uid="uid://l82ee7rv5w7q" path="res://ui/ui.tres" id="1_l2sen"]
+
+[node name="Ui" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -50.0
+offset_right = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("1_l2sen")
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Name Label" type="Label" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l2sen")
+theme_override_font_sizes/font_size = 24
+text = "Player 1"
+
+[node name="Name Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l2sen")
+theme_override_font_sizes/font_size = 24
+text = "Player 2"
+
+[node name="Name Label3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l2sen")
+theme_override_font_sizes/font_size = 24
+text = "Player 3"
+
+[node name="Name Label4" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_l2sen")
+theme_override_font_sizes/font_size = 24
+text = "Player 4"
