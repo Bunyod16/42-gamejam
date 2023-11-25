@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6ahe261jxno1"]
+[gd_scene load_steps=15 format=3 uid="uid://b6ahe261jxno1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_q1pry"]
 [ext_resource type="Texture2D" uid="uid://b5y8k5a8tcgoj" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
@@ -610,6 +610,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
 size = Vector2(18, 14)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_70g4i"]
+properties/0/path = NodePath("..:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(13, 4)
 script = ExtResource("1_q1pry")
@@ -695,3 +701,7 @@ limit_top = 60
 limit_right = 1600
 limit_bottom = 950
 position_smoothing_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../Camera2D")
+replication_config = SubResource("SceneReplicationConfig_70g4i")

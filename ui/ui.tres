@@ -1,0 +1,72 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://l82ee7rv5w7q"]
+
+[ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="1_vfm6g"]
+[ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="2_cyt7a"]
+[ext_resource type="StyleBox" uid="uid://ddmnhxd8i2xu1" path="res://ui/StyleBoxes/AltMainStyleBox.tres" id="2_fw46b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k54wx"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gej3n"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ul2kd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wkpl"]
+
+[resource]
+default_font = ExtResource("1_vfm6g")
+default_font_size = 16
+Button/colors/font_color = Color(0.87451, 0.87451, 0.87451, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0.501961)
+Button/colors/font_focus_color = Color(0.682353, 0.239216, 0.2, 1)
+Button/colors/font_hover_color = Color(0.682353, 0.239216, 0.2, 1)
+Button/colors/font_hover_pressed_color = Color(0.682353, 0.239216, 0.2, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.682353, 0.239216, 0.2, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+Button/colors/icon_normal_color = Color(1, 1, 1, 0)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 0)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 128
+Button/fonts/font = ExtResource("1_vfm6g")
+Button/styles/normal = ExtResource("2_fw46b")
+HBoxContainer/constants/separation = 80
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 8
+Label/font_sizes/font_size = 128
+Label/fonts/font = ExtResource("1_vfm6g")
+Label/styles/normal = SubResource("StyleBoxEmpty_k54wx")
+LineEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0.784314, 0.603922, 0.407843, 1)
+LineEdit/constants/caret_width = 2
+LineEdit/constants/outline_size = 3
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("1_vfm6g")
+LineEdit/styles/normal = ExtResource("2_fw46b")
+Panel/styles/panel = SubResource("StyleBoxEmpty_gej3n")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ul2kd")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.243137, 0.25098, 0.25098, 1)
+RichTextLabel/colors/table_border = Color(0.72549, 0.290196, 0.0431373, 1)
+RichTextLabel/constants/outline_size = 8
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("2_cyt7a")
+RichTextLabel/styles/normal = ExtResource("2_fw46b")
+TextEdit/font_sizes/font_size = 32
+TextEdit/fonts/font = ExtResource("1_vfm6g")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_1wkpl")
+VBoxContainer/constants/separation = 30

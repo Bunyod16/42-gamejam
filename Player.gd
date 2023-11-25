@@ -14,6 +14,12 @@ const lasso_texture = preload("res://assets/cowboy/Lasso.png")
 signal dig_action(player: Player)
 
 func _ready():
+	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
+#	print_tree_pretty() #BEST FUNCTION DONT DELETE
+
+	if multiplayer.get_unique_id() == name.to_int():
+		get_node("Camera2D").make_current()
+
 	screen_size = get_viewport_rect().size
 	animation = $Sprites/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
@@ -57,6 +63,9 @@ func _input(InputEvent):
 # 		# is_inside_diggable_area = false
 
 func _process(delta):
+	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
+
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -98,11 +107,13 @@ func _process(delta):
 
 	update_cooldown(delta)
 
-
 var weapon_cooldown_duration = 3.0
 var cooldown_timer = 0.0
 
 func use_weapon():
+	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
+
 	if cooldown_timer <= 0:
 		# TODO: Use weapon, do things to its UI etc
 		start_cooldown()
