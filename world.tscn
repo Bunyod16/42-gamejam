@@ -451,7 +451,7 @@ layer_3/tile_data = PackedInt32Array(262152, 262144, 4, 393220, 131072, 4, 26214
 
 [node name="Player" parent="." instance=ExtResource("2_c68e3")]
 position = Vector2(461, 364)
-scale = Vector2(0.504858, 0.504858)
+scale = Vector2(3, 3)
 disable_mode = 1
 speed = 200
 
