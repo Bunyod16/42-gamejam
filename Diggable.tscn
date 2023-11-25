@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peo3a"]
 size = Vector2(16, 16)
 
-[node name="Diggable" type="Area2D"]
+[node name="Diggable" type="Area2D" groups=["diggable"]]
 script = ExtResource("1_pdph8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
