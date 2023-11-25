@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://baq8w57hjuhq3"]
+
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_4bwjt"]
+[ext_resource type="PackedScene" path="res://basic_player.tscn" id="2_ibgny"]
+[ext_resource type="Theme" uid="uid://l82ee7rv5w7q" path="res://ui/ui.tres" id="3_lkl8u"]
+[ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="4_y7hmr"]
+[ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="5_bfe8h"]
+
+[node name="multiplayer_test" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4bwjt")
+player_scene = ExtResource("2_ibgny")
+
+[node name="MainMenuVContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 849.0
+offset_right = 376.0
+offset_bottom = 1020.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_lkl8u")
+alignment = 2
+
+[node name="Host" type="Button" parent="MainMenuVContainer"]
+layout_mode = 2
+theme = ExtResource("3_lkl8u")
+theme_override_fonts/font = ExtResource("4_y7hmr")
+theme_override_font_sizes/font_size = 128
+text = "Host"
+
+[node name="Join" type="Button" parent="MainMenuVContainer"]
+layout_mode = 2
+theme = ExtResource("3_lkl8u")
+theme_override_fonts/font = ExtResource("5_bfe8h")
+theme_override_font_sizes/font_size = 128
+text = "Join
+"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://basic_player.tscn")
+spawn_path = NodePath("..")
+
+[node name="IpPopup" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 760.0
+offset_top = 80.0
+offset_right = 1160.0
+offset_bottom = 180.0
+theme = ExtResource("3_lkl8u")
+fit_content = true
+scroll_active = false
+
+[node name="IpInput" type="LineEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 760.0
+offset_top = 80.0
+offset_right = 1160.0
+offset_bottom = 180.0
+theme = ExtResource("3_lkl8u")
+placeholder_text = "Type Host IP"
+clear_button_enabled = true
+caret_blink = true
+
+[connection signal="pressed" from="MainMenuVContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MainMenuVContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="text_submitted" from="IpInput" to="." method="_on_ip_input_text_submitted"]
