@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw4d71bew3lm2"
-path="res://.godot/imported/CowBoyIdle.png-568599a8c70a9ef6b064afcb9c68e05b.ctex"
+uid="uid://4gprkeh27jq0"
+path="res://.godot/imported/Shovel.png-70ea5cb42e95eaafebbf6297149e060c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cowboy/CowBoyIdle.png"
-dest_files=["res://.godot/imported/CowBoyIdle.png-568599a8c70a9ef6b064afcb9c68e05b.ctex"]
+source_file="res://assets/cowboy/Shovel.png"
+dest_files=["res://.godot/imported/Shovel.png-70ea5cb42e95eaafebbf6297149e060c.ctex"]
 
 [params]
 
