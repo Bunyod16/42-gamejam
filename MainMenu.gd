@@ -27,7 +27,7 @@ func _on_host_pressed():
 	
 	#Send host information
 	print("host unique id"+  str(multiplayer.get_unique_id()))
-	send_player_information(multiplayer.get_unique_id(), "name")
+	GameManager.send_player_information(multiplayer.get_unique_id(), "name", 3)
 	
 	print("HOST IP:" + ip_address)
 
@@ -52,7 +52,7 @@ func peer_connected(id):
 func connected_to_server():
 	print("Peer Connected To Server")
 	#Send Player Information
-	send_player_information.rpc_id(1, multiplayer.get_unique_id(), "name")
+	GameManager.send_player_information.rpc_id(1, multiplayer.get_unique_id(), "name", 3)
 
 #Adds player to scene
 #func _add_player(id = 1):
@@ -102,16 +102,3 @@ func start_game():
 	var scene = load("res://world.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
-	
-@rpc("any_peer")
-func send_player_information(id, name):
-	if not GameManager.Players.has(id):
-		GameManager.Players[id] = {
-			"name": name,
-			"id": id
-		}
-		
-	if multiplayer.is_server():
-		for i in GameManager.Players:
-			print("i:" + str(i))
-			send_player_information.rpc(i, GameManager.Players[i].name)

@@ -243,7 +243,16 @@ func handle_deliver_gold():
 func _update_player_speed_modifier():
 	speed = base_speed * gold_speed_modifier[collected_gold_count]
 
-func _on_shovel_hit_area_entered(area):
+func _on_shovel_hit_area_entered(area: Area2D):
+	var player_hit_id = area.owner.name.to_int()
+	var player_hit = GameManager.Players[player_hit_id]
+	
+	print(name, " hit ", player_hit_id)
+	
+	print("before", GameManager.Players)
+	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1)
+	print("after", GameManager.Players)
+	
 	change_hand_item(lasso_texture)
 	print("SHOVEL HIT")
 	print(area)
