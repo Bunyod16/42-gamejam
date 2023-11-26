@@ -737,3 +737,6 @@ offset_right = 508.0
 offset_bottom = 455.0
 scale = Vector2(0.0318643, 0.0318643)
 texture = ExtResource("9_ibido")
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.6

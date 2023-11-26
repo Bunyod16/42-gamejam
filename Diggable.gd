@@ -8,13 +8,15 @@ var cooldown_timer: float = digging_time_required
 # refers to the first player digging for now
 var digging_player: Player = null
 
+signal player_starts_digging
+signal digging_completed
+
 # [DEFER] when other players dig too
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	connect("body_exited", Callable(self, "_on_body_exited"))
-	pass # Replace with function body.s
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,27 +32,40 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body is Player:
-		if body.dig_action.is_connected(Callable(self, "handle_dig")):
-			return
-		body.dig_action.connect(Callable(self, "handle_dig"))
+		# connect player actions
+		if not body.dig_action.is_connected(Callable(self, "handle_dig_action")):
+			body.dig_action.connect(Callable(self, "handle_dig_action"))
+		if not body.dig_interrupted.is_connected(Callable(self, "_on_digging_interrupted")):
+			body.dig_interrupted.connect(Callable(self, "_on_digging_interrupted"))
+
+		# connect signal to player
+		if not self.player_starts_digging.is_connected(Callable(body, "_handle_digging")):
+			self.player_starts_digging.connect(Callable(body, "_handle_digging"))
+		if not self.digging_completed.is_connected(Callable(body, "_handle_digging_completed")):
+			self.digging_completed.connect(Callable(body, "_handle_digging_completed"))
 		# print("connected!")
 
 func _on_body_exited(body):
 	if body is Player:
-		body.dig_action.disconnect(Callable(self, "handle_dig"))
+		body.dig_action.disconnect(Callable(self, "handle_dig_action"))
+		body.dig_interrupted.disconnect(Callable(self, "_on_digging_interrupted"))
+		self.player_starts_digging.disconnect(Callable(body, "_handle_digging"))
+		self.player_starts_digging.disconnect(Callable(body, "_handle_digging_completed"))
 		# print("disconnected!")
 
-func handle_dig(player):
+func handle_dig_action(player):
 	if not is_being_digged:
 		digging_player = player
 		is_being_digged = true
-		print("Received & Digging!!!")
+		# print("Received & Digging!!!")
 		$Progress.show()
-	# emit digging to Player(?)
-	# to check for 1) movement 2) player got hit
-	# so we can fire on_digging_interrupted accordingly
+		# emit start digging to player
+		self.player_starts_digging.emit()
+		# to check for 1) movement 2) player got hit
+		# so we can fire _on_digging_interrupted accordingly
 
-func on_digging_interrupted():
+func _on_digging_interrupted(_player: Player):
+	print("digging interrupted")
 	is_being_digged = false
 	pass
 
@@ -65,4 +80,3 @@ func spawn_gold_towards_player(player: Player):
 func play_digging_sound():
 	if not $AudioStreamPlayer2D.playing:
 		$AudioStreamPlayer2D.play()
-	

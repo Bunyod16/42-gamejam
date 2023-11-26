@@ -8,6 +8,9 @@ var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
 
 var is_stunned: bool = false
+const stun_duration: float = 0.6
+
+var is_digging: bool = false
 
 var collected_gold_count: int = 0
 var gold_icons: Array = []
@@ -22,6 +25,7 @@ const outline_gold_texture = preload("res://assets/gold_outline.png")
 
 # signal dig_action(player, diggable_area)
 signal dig_action(player: Player)
+signal dig_interrupted(player: Player)
 
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
@@ -31,9 +35,12 @@ func _ready():
 		get_node("Camera2D").make_current()
 
 	screen_size = get_viewport_rect().size
-	
+
 	gold_icons = [$Control/Gold1, $Control/Gold2, $Control/Gold3]
-	
+
+	$StunTimer.wait_time = stun_duration
+	$StunTimer.timeout.connect(Callable(self, "_on_stun_end"))
+
 	animation = $Sprites/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
 	on_hand_walking_sprite = $Sprites/OnHandWalkingSprite
@@ -52,9 +59,9 @@ func _input(InputEvent):
 	# stop all inputs if stunned
 	if is_stunned:
 		return
+
 	# listen to SPACEBAR (for weapon)
 	if Input.is_action_just_pressed("ui_accept"):
-		print("space pressed")
 		use_weapon()
 
 	if Input.is_action_just_pressed("equip_shovel"):
@@ -82,9 +89,10 @@ func _process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
 	update_cooldown(delta)
-	
+
 	# stop all inputs if stunned
 	if is_stunned:
+		# _update_stunned_timer(delta)
 		animation.pause()
 		# TODO: add dazed status
 		return
@@ -92,7 +100,7 @@ func _process(delta):
 		animation.play()
 		# TODO: remove dazed status
 		pass
-		
+
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -132,7 +140,6 @@ func _process(delta):
 
 	position = position.clamp(Vector2.ZERO, screen_size)
 
-	
 
 var weapon_cooldown_duration = 3.0
 var cooldown_timer = 0.0
@@ -168,7 +175,48 @@ func on_cooldown_finished():
 	cooldown_timer = 0.0
 
 # On being hit?
+func _on_hit_by_shovel():
+	is_stunned = true
+	# resets the StunTimer
 
+	$StunTimer.stop()
+	$StunTimer.start()
+	if is_digging:
+		dig_interrupted.emit(self)
+		is_digging = false
+
+func _on_stun_end():
+	is_stunned = false
+	print("Stun completed")
+	$StunTimer.stop()
+	$StunTimer.wait_time = stun_duration
+	print($StunTimer.time_left) # it's 0 right now...
+	print(Time.get_ticks_msec())
+	print($StunTimer.time_left) # it's 0 right now...
+	pass
+
+func _handle_digging():
+	# TODO,
+	# pause movement, OR,
+	# interrupts digging if player moves
+	print("Player receives digging signal")
+	# TODO:
+	# play digging animation
+	is_digging = true
+	print(Time.get_ticks_msec())
+	_on_hit_by_shovel()
+
+func _handle_digging_completed():
+	print("Player receives digging completed signal")
+	is_digging = false
+	# TODO:
+	# stop digging animation
+
+func _interrupt_digging():
+	dig_interrupted.emit(self)
+	is_digging = false
+	# TODO:
+	# stop digging animation
 
 # Gold collection
 func handle_collect_gold():
@@ -178,14 +226,14 @@ func handle_collect_gold():
 		collected_gold_count += 1
 		_update_gold_ui()
 		_update_player_speed_modifier()
-	
+
 func _update_gold_ui():
 	for i in range(3):
 		if (i < collected_gold_count):
 			gold_icons[i].texture = solid_gold_texture
 		else:
 			gold_icons[i].texture = outline_gold_texture
-	
+
 func handle_deliver_gold():
 	GameManager.Teams["1"]["total_gold"] += collected_gold_count
 	# print(GameManager.Teams["1"]["total_gold"])
@@ -194,5 +242,5 @@ func handle_deliver_gold():
 	_update_player_speed_modifier()
 
 func _update_player_speed_modifier():
-	# print(gold_speed_modifier[collected_gold_count])
 	speed = base_speed * gold_speed_modifier[collected_gold_count]
+	# print(speed)
