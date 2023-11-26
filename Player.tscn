@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cunn201cv18ir" path="res://assets/cowboy/CowBoyWalkingHat.png" id="5_uqpnb"]
 [ext_resource type="Texture2D" uid="uid://b5okado12q076" path="res://assets/cowboy/CowBoyIdleArm.png" id="6_44jef"]
 [ext_resource type="Texture2D" uid="uid://do1rd2mn0ryt0" path="res://assets/cowboy/CowBoyWalkingArm.png" id="8_o1qh0"]
-[ext_resource type="Texture2D" uid="uid://d3yl470yqvkjh" path="res://assets/gold_outline.png" id="9_ibido"]
 [ext_resource type="Texture2D" uid="uid://bwb1n6su7qnrp" path="res://assets/cowboy/CowBoyAttackingBody.png" id="9_toidv"]
 [ext_resource type="Texture2D" uid="uid://c7wtn53rnc6nd" path="res://assets/cowboy/CowBoyAttackingHat.png" id="10_angw2"]
 [ext_resource type="Texture2D" uid="uid://dslbmeg8kkoyc" path="res://assets/cowboy/CowBoyAttackingArm.png" id="11_8r3le"]
 [ext_resource type="PackedScene" path="res://lasso.tscn" id="12_wnub6"]
 [ext_resource type="AudioStream" uid="uid://g7g5oqo4sxc3" path="res://assets/audio/punch-140236.mp3" id="13_nsw5b"]
+[ext_resource type="Texture2D" uid="uid://cuvwffcvxqclx" path="res://assets/gold.png" id="13_tehnb"]
 [ext_resource type="AudioStream" uid="uid://d11eqxxc0yj42" path="res://assets/audio/swing-6045.mp3" id="15_oefo6"]
 [ext_resource type="AudioStream" uid="uid://dbvkpggnb2w1j" path="res://assets/audio/whoosh-6316.mp3" id="16_tuev4"]
 
@@ -1197,6 +1197,18 @@ properties/0/path = NodePath("..:position")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
+properties/1/path = NodePath("../Control/Gold1:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("../Control/Gold2:visible")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("../Control/Gold3:visible")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
 size = Vector2(18, 29)
@@ -1330,31 +1342,34 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Gold1" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -24.0
 offset_top = -45.0
 offset_right = 476.0
 offset_bottom = 455.0
 scale = Vector2(0.0318643, 0.0318643)
-texture = ExtResource("9_ibido")
+texture = ExtResource("13_tehnb")
 
 [node name="Gold2" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -8.0
 offset_top = -45.0
 offset_right = 492.0
 offset_bottom = 455.0
 scale = Vector2(0.0318643, 0.0318643)
-texture = ExtResource("9_ibido")
+texture = ExtResource("13_tehnb")
 
 [node name="Gold3" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = -45.0
 offset_right = 508.0
 offset_bottom = 455.0
 scale = Vector2(0.0318643, 0.0318643)
-texture = ExtResource("9_ibido")
+texture = ExtResource("13_tehnb")
 
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.6

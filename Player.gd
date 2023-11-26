@@ -165,12 +165,7 @@ func _process(delta):
 
 	position = position.clamp(Vector2.ZERO, screen_size)
 
-	for i in range(3):
-		var node = get_node("Control/Gold" + str(i +1))
-		if (i < collected_gold_count):
-			node.texture = solid_gold_texture
-		else:
-			node.texture = outline_gold_texture
+	_update_gold_ui()
 
 #	for i in range(3):
 #		if (i < collected_gold_count):
@@ -271,9 +266,11 @@ func _update_gold_ui():
 #		var collected_gold_count = GameManager.Players[player].collected_gold
 	for i in range(3):
 		if (i < collected_gold_count):
-			gold_icons[i].texture = solid_gold_texture
+			# gold_icons[i].texture = solid_gold_texture
+			gold_icons[i].visible = true
 		else:
-			gold_icons[i].texture = outline_gold_texture
+			# gold_icons[i].texture = outline_gold_texture
+			gold_icons[i].visible = false
 
 func _handle_deliver_gold():
 	# GameManager.Teams["1"]["total_gold"] += collected_gold_count
