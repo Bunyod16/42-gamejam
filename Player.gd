@@ -4,6 +4,7 @@ class_name Player
 var x_direction = 1
 var current_animation = null
 var animation : AnimationPlayer
+var lassoAnimation : AnimationPlayer
 var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
 var on_hand_attack_sprite : Sprite2D
@@ -42,6 +43,7 @@ func _ready():
 	$StunTimer.timeout.connect(Callable(self, "_on_stun_end"))
 
 	animation = $AnimationPlayer
+	lassoAnimation = $Lasso/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
 	on_hand_walking_sprite = $Sprites/OnHandWalkSprite
 	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
@@ -138,6 +140,7 @@ func _process(delta):
 	else:
 		if (Input.is_action_pressed("attack")):
 			animation.play("IdleAttackRight")
+			lassoAnimation.play("Throw")
 		else:
 			animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
@@ -253,6 +256,8 @@ func _update_player_speed_modifier():
 	speed = base_speed * gold_speed_modifiers[collected_gold_count]
 
 func _on_shovel_hit_area_entered(area: Area2D):
+	if (not area.owner.name.to_int() in GameManager.Players):
+		return 
 	$AudioStreamPlayer.play()
 
 	var player_hit_id = area.owner.name.to_int()
@@ -264,6 +269,5 @@ func _on_shovel_hit_area_entered(area: Area2D):
 	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1, player_hit.gold)
 	print("after", GameManager.Players)
 
-	change_hand_item(lasso_texture)
 	print("SHOVEL HIT")
 	print(area)
