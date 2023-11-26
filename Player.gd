@@ -48,7 +48,7 @@ func _ready():
 	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
 	# Play the idle animation when the scene starts
 	animation.play("IdleRight")
-	
+
 
 func change_hand_item(texture: Texture):
 	on_hand_idle_sprite.texture = texture
@@ -99,7 +99,7 @@ func _process(delta):
 		# Get the mouse position in the world
 	# Rotate the weapon towards the mouse
 	update_cooldown(delta)
-	
+
 	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
 
 	# stop all inputs if stunned
@@ -164,7 +164,7 @@ func _process(delta):
 		#$AnimatedSprite2D.play()
 
 	position = position.clamp(Vector2.ZERO, screen_size)
-	
+
 	for i in range(3):
 		var node = get_node("Control/Gold" + str(i +1))
 		if (i < collected_gold_count):
@@ -266,7 +266,7 @@ func handle_collect_gold():
 
 func _update_gold_ui():
 	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
-	
+
 #	for player in multiplayer.get_peers():
 #		var collected_gold_count = GameManager.Players[player].collected_gold
 	for i in range(3):
@@ -306,7 +306,8 @@ func _on_shovel_hit_area_entered(area: Area2D):
 	print(name, " hit ", player_hit_id)
 
 	print("before", GameManager.Players)
-	GameManager.update_player_information(player_hit_id, player_hit.name, max(player_hit.health - 1, 0), player_hit.gold)
+	GameManager.update_player_information(player_hit_id, player_hit.name, max(player_hit.health - 1, 0), player_hit.gold, player_hit.collected_gold)
+
 	# what is the minimum in GDScript?
 
 	print("after", GameManager.Players)
