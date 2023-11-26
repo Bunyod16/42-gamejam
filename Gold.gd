@@ -17,13 +17,14 @@ func _on_body_entered(body):
 		# TODO: bounce/towards player animation for a duration
 		gold_collected.emit()
 		self.queue_free()
-		
+
 
 func set_target(target_position: Vector2):
 	target = target_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = position.lerp(target, speed * delta)
+	# idk why the lerp makes it fly away tf
+	# position = position.lerp(target, speed * delta)
 	# print(position)
 	pass
