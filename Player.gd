@@ -235,8 +235,16 @@ func _update_gold_ui():
 			gold_icons[i].texture = outline_gold_texture
 
 func _handle_deliver_gold():
-	GameManager.Teams["1"]["total_gold"] += collected_gold_count
+	# GameManager.Teams["1"]["total_gold"] += collected_gold_count
 	# print(GameManager.Teams["1"]["total_gold"])
+	print(name)
+	var player_id = name.to_int()
+	var player_obj = GameManager.Players[player_id]
+
+	print("before", GameManager.Players)
+	GameManager.update_player_information(player_id, player_obj.name, player_obj.health, player_obj.gold + collected_gold_count)
+	print("after", GameManager.Players)
+
 	collected_gold_count = 0
 	_update_gold_ui()
 	_update_player_speed_modifier()
@@ -253,7 +261,7 @@ func _on_shovel_hit_area_entered(area: Area2D):
 	print(name, " hit ", player_hit_id)
 
 	print("before", GameManager.Players)
-	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1)
+	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1, player_hit.gold)
 	print("after", GameManager.Players)
 
 	change_hand_item(lasso_texture)

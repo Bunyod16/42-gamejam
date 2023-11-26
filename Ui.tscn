@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0ra3gmpaqk47"]
+[gd_scene load_steps=5 format=3 uid="uid://cli1772hrnu8r"]
 
 [ext_resource type="Theme" uid="uid://l82ee7rv5w7q" path="res://ui/ui.tres" id="1_l2sen"]
 [ext_resource type="Script" path="res://Ui.gd" id="1_wafed"]
@@ -77,6 +77,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "x0"
 
+[node name="Label2" type="Label" parent="HBoxContainer/0/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x0"
+
 [node name="1" type="VBoxContainer" parent="HBoxContainer" groups=["PlayerUis"]]
 visible = false
 layout_mode = 2
@@ -126,6 +131,11 @@ texture = ExtResource("4_ffxis")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="HBoxContainer/1/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x0"
+
+[node name="Label2" type="Label" parent="HBoxContainer/1/Gold Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "x0"
@@ -183,6 +193,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "x0"
 
+[node name="Label2" type="Label" parent="HBoxContainer/2/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x0"
+
 [node name="3" type="VBoxContainer" parent="HBoxContainer" groups=["PlayerUis"]]
 visible = false
 layout_mode = 2
@@ -232,6 +247,11 @@ texture = ExtResource("4_ffxis")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="HBoxContainer/3/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x0"
+
+[node name="Label2" type="Label" parent="HBoxContainer/3/Gold Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "x0"

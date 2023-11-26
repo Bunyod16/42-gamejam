@@ -11,42 +11,43 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
 @rpc("any_peer")
 func send_player_information(id, name, health, update=false):
 	if not GameManager.Players.has(id):
 		GameManager.Players[id] = {
 			"name": name,
 			"id": id,
-			"health": health
+			"health": health,
+			"gold": 0,
 		}
 	else:
 		if update:
 			print("UPDATED")
 			GameManager.Players[id].health = health
-		
+
 	if multiplayer.is_server():
 		print("SERVER SENDING TO CLIENTS")
 		for i in GameManager.Players:
 			print("i:" + str(i))
 			send_player_information.rpc(i, GameManager.Players[i].name, GameManager.Players[i].health)
-			
-			
+
+
 @rpc("any_peer")
-func update_player_information(id, name, health):
+func update_player_information(id, name, health, gold):
 	if GameManager.Players.has(id):
-		if GameManager.Players[id].health == health:
+		if GameManager.Players[id].health == health or GameManager.Players[id].gold == gold:
 			return
 		else:
 			GameManager.Players[id].health = health
-		
+
 	for i in multiplayer.get_peers():
 		print("IDSOMEWHERE:", i)
-		update_player_information.rpc(id, name, health)
+		update_player_information.rpc(id, name, health, gold)
 
 #func update_player_information_rpc(peer, id, name, health):
 #	rpc_id(peer, "update_player_information", id, name, health)
-			
+
 # Function to update a player's health
 @rpc("any_peer")
 func update_player_health(id, new_health):

@@ -14,8 +14,10 @@ func _ready():
 	for i in GameManager.Players:
 		var node = get_node("HBoxContainer/" + str(index))
 		var label = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label")
-		
+		var label_gold = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label2")
+
 		label.text = str(GameManager.Players[i].health)
+		label_gold.text = str(GameManager.Players[i].gold)
 		node.visible = true
 		print("range:", index)
 		index+= 1
@@ -30,9 +32,13 @@ func _process(delta):
 	for i in GameManager.Players:
 		var node = get_node("HBoxContainer/" + str(index))
 		var label = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label")
-		
+		var label_gold = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label2")
+
 		if label.text != str(GameManager.Players[i].health):
 			label.text = str(GameManager.Players[i].health)
+
+		if label_gold.text != str(GameManager.Players[i].gold):
+			label_gold.text = str(GameManager.Players[i].gold)
 		index+= 1
 
 func _set_ui_data(ui: NodePath, player_id:int):
