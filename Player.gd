@@ -193,8 +193,6 @@ func _on_stun_end():
 	$StunTimer.stop()
 	$StunTimer.wait_time = stun_duration
 	print($StunTimer.time_left) # it's 0 right now...
-	print(Time.get_ticks_msec())
-	print($StunTimer.time_left) # it's 0 right now...
 	pass
 
 func _handle_digging():
@@ -205,8 +203,6 @@ func _handle_digging():
 	# TODO:
 	# play digging animation
 	is_digging = true
-	print(Time.get_ticks_msec())
-	_on_hit_by_shovel()
 
 func _handle_digging_completed():
 	print("Player receives digging completed signal")
