@@ -13,36 +13,40 @@ func _ready():
 #Handles host button
 func _on_host_pressed():
 	var ip_address = _get_address()
-	
+
 	#Hides ui elemnts
 	$MainMenuVContainer/Host.visible = false
 	$MainMenuVContainer/Join.visible = false
 	$MainMenuVContainer/Start.visible = true
 	$IpPopup.visible = true
 	$IpPopup.text = "Your IP:" + ip_address
-	
+
 	#sets peer for connection
-	peer = ENetMultiplayerPeer.new() 
+	peer = ENetMultiplayerPeer.new()
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
-	
+
 	#Send host information
 	print("host unique id"+  str(multiplayer.get_unique_id()))
 	GameManager.send_player_information(multiplayer.get_unique_id(), "name", 3)
-	
+
 	print("HOST IP:" + ip_address)
 
 #Handles join button
 func _on_join_pressed():
-	#Hides ui elements
-	$MainMenuVContainer/Host.disabled = true
-	$IpInput.visible = true
-	$IpInput.grab_focus() #Auto focus text box
-	
+	if $IpInput.visible == false:
+		#Hides ui elements
+		$MainMenuVContainer/Host.disabled = true
+		$IpInput.visible = true
+		$IpInput.grab_focus() #Auto focus text box
+	else:
+		# quick and easy and ugly
+		_on_ip_input_text_submitted($IpInput.text)
+
 @rpc("any_peer", "call_local")
 func _on_start_pressed():
 	start_game.rpc()
-	
+
 
 func _on_mouse_entered():
 	$AudioStreamPlayer.play()
@@ -65,7 +69,7 @@ func connected_to_server():
 #	var player = player_scene.instantiate() #Instantiate player
 #	player.name = str(id) #Set player name to id
 #	call_deferred("add_child", player) #Add player to scene
-	
+
 #Returs host ip address
 func _get_address():
 	for address in IP.get_local_addresses():
@@ -88,13 +92,13 @@ func _connect_player_to_ip(ip: String):
 	peer = ENetMultiplayerPeer.new()
 	if (peer.create_client(ip, PORT) == OK): #Join as client to "ip", port
 		print("IP OK: " + ip)
-		
+
 		#Hides ui elemnt
 		$IpInput.visible = false
 		$MainMenuVContainer/Host.visible = false
 		$MainMenuVContainer/Join.visible = false
 		$WaitingForHost.visible = true
-		
+
 		#sets peer for connection
 		multiplayer.multiplayer_peer = peer #Set multiplayer peer to the recently connected peer
 	else:

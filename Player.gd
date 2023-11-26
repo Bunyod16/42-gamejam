@@ -150,7 +150,7 @@ func _process(delta):
 		#$AnimatedSprite2D.animation = "walking"
 	else:
 		if (Input.is_action_pressed("attack")):
-			print(on_hand_attack_sprite)
+			# print(on_hand_attack_sprite)
 			if (on_hand_attack_sprite.texture == lasso_texture):
 				print("SHOOTING LASSO")
 				shootLasso()
