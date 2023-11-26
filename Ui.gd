@@ -13,10 +13,10 @@ func _ready():
 
 	for i in GameManager.Players:
 		var node = get_node("HBoxContainer/" + str(index))
-		var label = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label")
-		var label_gold = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label2")
+		var label_heart = get_node("HBoxContainer/" + str(index) + "/Heart Container/Label")
+		var label_gold = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label")
 
-		label.text = str(GameManager.Players[i].health)
+		label_heart.text = str(GameManager.Players[i].health)
 		label_gold.text = str(GameManager.Players[i].gold)
 		node.visible = true
 		print("range:", index)
@@ -31,11 +31,11 @@ func _process(delta):
 
 	for i in GameManager.Players:
 		var node = get_node("HBoxContainer/" + str(index))
-		var label = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label")
-		var label_gold = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label2")
+		var label_heart = get_node("HBoxContainer/" + str(index) + "/Heart Container/Label")
+		var label_gold = get_node("HBoxContainer/" + str(index) + "/Gold Container/Label")
 
-		if label.text != str(GameManager.Players[i].health):
-			label.text = str(GameManager.Players[i].health)
+		if label_heart.text != str(GameManager.Players[i].health):
+			label_heart.text = str(GameManager.Players[i].health)
 
 		if label_gold.text != str(GameManager.Players[i].gold):
 			label_gold.text = str(GameManager.Players[i].gold)
