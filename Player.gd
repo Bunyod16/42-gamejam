@@ -29,7 +29,6 @@ signal dig_interrupted(player: Player)
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
 	connect("body_entered", Callable(self, "_on_body_entered"))
-	
 	$Sprites/ShovelHit.connect("area_entered", _on_shovel_hit_area_entered)
 #	print_tree_pretty() #BEST FUNCTION DONT DELETE
 
@@ -54,8 +53,8 @@ func change_hand_item(texture: Texture):
 	on_hand_walking_sprite.texture = texture
 	on_hand_attack_sprite.texture = texture
 
-const base_speed = 400
-@export var speed = 400 # How fast the player will move (pixels/sec).
+const base_speed = 1600
+@export var speed = 1600 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
 func _input(InputEvent):
@@ -244,6 +243,7 @@ func _update_player_speed_modifier():
 	speed = base_speed * gold_speed_modifier[collected_gold_count]
 
 func _on_shovel_hit_area_entered(area):
+	$AudioStreamPlayer.play()
 	change_hand_item(lasso_texture)
 	print("SHOVEL HIT")
 	print(area)

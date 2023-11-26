@@ -73,5 +73,4 @@ attack={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.552941, 0.25098, 0.0313726, 1)
