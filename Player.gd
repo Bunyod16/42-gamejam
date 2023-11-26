@@ -7,8 +7,15 @@ var animation : AnimationPlayer
 var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
 
+var collected_gold_count: int = 0
+var gold_icons: Array = []
+
 const shovel_texture = preload("res://assets/cowboy/Shovel.png")
 const lasso_texture = preload("res://assets/cowboy/Lasso.png")
+
+const solid_gold_texture = preload("res://assets/gold.png")
+const outline_gold_texture = preload("res://assets/gold_outline.png")
+
 
 # signal dig_action(player, diggable_area)
 signal dig_action(player: Player)
@@ -21,6 +28,9 @@ func _ready():
 		get_node("Camera2D").make_current()
 
 	screen_size = get_viewport_rect().size
+	
+	gold_icons = [$Control/Gold1, $Control/Gold2, $Control/Gold3]
+	
 	animation = $Sprites/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
 	on_hand_walking_sprite = $Sprites/OnHandWalkingSprite
@@ -140,7 +150,26 @@ func on_cooldown_finished():
 	$Cooldown.hide()
 	cooldown_timer = 0.0
 
+# On being hit?
+
 
 # Gold collection
 func handle_collect_gold():
 	print("Collecting gold!!")
+	# TODO: handle max 3 gold collected?
+	if collected_gold_count < 3:
+		collected_gold_count += 1
+		update_gold_ui()
+	
+func update_gold_ui():
+	for i in range(3):
+		if (i < collected_gold_count):
+			gold_icons[i].texture = solid_gold_texture
+			pass
+		else:
+			gold_icons[i].texture = outline_gold_texture
+			pass
+	
+func deliver_gold():
+	pass
+

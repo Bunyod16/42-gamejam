@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6ahe261jxno1"]
+[gd_scene load_steps=16 format=3 uid="uid://b6ahe261jxno1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_q1pry"]
 [ext_resource type="Texture2D" uid="uid://b5y8k5a8tcgoj" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cunn201cv18ir" path="res://assets/cowboy/CowBoyWalkingHat.png" id="5_uqpnb"]
 [ext_resource type="Texture2D" uid="uid://b5okado12q076" path="res://assets/cowboy/CowBoyIdleArm.png" id="6_44jef"]
 [ext_resource type="Texture2D" uid="uid://do1rd2mn0ryt0" path="res://assets/cowboy/CowBoyWalkingArm.png" id="8_o1qh0"]
+[ext_resource type="Texture2D" uid="uid://d3yl470yqvkjh" path="res://assets/gold_outline.png" id="9_ibido"]
 
 [sub_resource type="Animation" id="Animation_7y4uk"]
 resource_name = "IdleRight"
@@ -617,7 +618,6 @@ properties/0/sync = true
 properties/0/watch = false
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(13, 4)
 script = ExtResource("1_q1pry")
 metadata/_edit_group_ = true
 
@@ -686,7 +686,6 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_u4uyd")
 
 [node name="Cooldown" type="ProgressBar" parent="."]
-visible = false
 offset_left = -23.0
 offset_top = -51.0
 offset_right = 58.0
@@ -705,3 +704,36 @@ position_smoothing_enabled = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../Camera2D")
 replication_config = SubResource("SceneReplicationConfig_70g4i")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gold1" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -45.0
+offset_right = 476.0
+offset_bottom = 455.0
+scale = Vector2(0.0318643, 0.0318643)
+texture = ExtResource("9_ibido")
+
+[node name="Gold2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -45.0
+offset_right = 492.0
+offset_bottom = 455.0
+scale = Vector2(0.0318643, 0.0318643)
+texture = ExtResource("9_ibido")
+
+[node name="Gold3" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -45.0
+offset_right = 508.0
+offset_bottom = 455.0
+scale = Vector2(0.0318643, 0.0318643)
+texture = ExtResource("9_ibido")
