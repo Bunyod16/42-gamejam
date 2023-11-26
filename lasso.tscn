@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ucx5id7g6dd8"]
+[gd_scene load_steps=7 format=3 uid="uid://dj6c3grte511x"]
 
 [ext_resource type="Script" path="res://Lasso.gd" id="1_dps1e"]
 [ext_resource type="Texture2D" uid="uid://0wohklmxmiut" path="res://assets/cowboy/LassoThrow.png" id="2_y3ok2"]

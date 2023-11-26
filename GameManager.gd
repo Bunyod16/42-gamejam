@@ -49,6 +49,11 @@ func update_player_information(id, name, health, gold, collected_gold):
 	for i in multiplayer.get_peers():
 		print("IDSOMEWHERE:", i)
 		update_player_information.rpc(id, name, health, gold, collected_gold)
+	
+	if (GameManager.Players[id].gold == 7):
+		get_tree().change_scene_to_file("res://EndScreen.tscn")
+		print("GAME ENDED")
+
 
 #func update_player_information_rpc(peer, id, name, health):
 #	rpc_id(peer, "update_player_information", id, name, health)
