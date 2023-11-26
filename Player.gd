@@ -6,7 +6,7 @@ var current_animation = null
 var animation : AnimationPlayer
 var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
-
+var on_hand_attack_sprite : Sprite2D
 var is_stunned: bool = false
 const stun_duration: float = 0.6
 
@@ -43,13 +43,15 @@ func _ready():
 
 	animation = $Sprites/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
-	on_hand_walking_sprite = $Sprites/OnHandWalkingSprite
+	on_hand_walking_sprite = $Sprites/OnHandWalkSprite
+	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
 	# Play the idle animation when the scene starts
 	animation.play("IdleRight")
 
 func change_hand_item(texture: Texture):
 	on_hand_idle_sprite.texture = texture
 	on_hand_walking_sprite.texture = texture
+	on_hand_attack_sprite.texture = texture
 
 const base_speed = 400
 @export var speed = 400 # How fast the player will move (pixels/sec).
@@ -114,13 +116,7 @@ func _process(delta):
 			$Sprites.scale = Vector2(-1, 1);
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
-		if (x_direction != -1):
-			x_direction = -1;
-			$Sprites.scale = Vector2(-1,1)
 	if Input.is_action_pressed("move_up"):
-		if (x_direction != 1):
-			x_direction = 1;
-			$Sprites.scale = Vector2(1,1)
 		velocity.y -= 1
 	move_and_collide(velocity)
 
@@ -131,11 +127,17 @@ func _process(delta):
 		dig_action.emit(self)
 
 	if velocity.length() > 0:
+		if (Input.is_action_pressed("attack")):
+			animation.play("WalkAttackRight")
+		else:
+			animation.play("WalkRight")
 		velocity = velocity.normalized() * speed
-		animation.play("WalkingRight")
 		#$AnimatedSprite2D.animation = "walking"
 	else:
-		animation.play("IdleRight")
+		if (Input.is_action_pressed("attack")):
+			animation.play("IdleAttackRight")
+		else:
+			animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
 
 	position = position.clamp(Vector2.ZERO, screen_size)
