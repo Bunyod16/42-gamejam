@@ -15,9 +15,9 @@ func _on_host_pressed():
 	var ip_address = _get_address()
 	
 	#Hides ui elemnts
-	$MainMenuVContainer/Host.visible = false
-	$MainMenuVContainer/Join.visible = false
-	$MainMenuVContainer/Start.visible = true
+	$MarginContainer/MainMenuVContainer/Host.visible = false
+	$MarginContainer/MainMenuVContainer/Join.visible = false
+	$MarginContainer/MainMenuVContainer/Start.visible = true
 	$IpPopup.visible = true
 	$IpPopup.text = "Your IP:" + ip_address
 	
@@ -35,7 +35,7 @@ func _on_host_pressed():
 #Handles join button
 func _on_join_pressed():
 	#Hides ui elements
-	$MainMenuVContainer/Host.disabled = true
+	$MarginContainer/MainMenuVContainer/Host.disabled = true
 	$IpInput.visible = true
 	$IpInput.grab_focus() #Auto focus text box
 	
@@ -91,8 +91,8 @@ func _connect_player_to_ip(ip: String):
 		
 		#Hides ui elemnt
 		$IpInput.visible = false
-		$MainMenuVContainer/Host.visible = false
-		$MainMenuVContainer/Join.visible = false
+		$MarginContainer/MainMenuVContainer/Host.visible = false
+		$MarginContainer/MainMenuVContainer/Join.visible = false
 		$WaitingForHost.visible = true
 		
 		#sets peer for connection
