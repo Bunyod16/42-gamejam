@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6ahe261jxno1" path="res://Player.tscn" id="2_c68e3"]
 [ext_resource type="PackedScene" uid="uid://vh5ix74uqj02" path="res://Diggable.tscn" id="3_1d44m"]
 [ext_resource type="PackedScene" uid="uid://bw113t8ykxaqt" path="res://tilemap.tscn" id="3_vsk5u"]
-[ext_resource type="PackedScene" uid="uid://cli1772hrnu8r" path="res://Ui.tscn" id="5_r3273"]
+[ext_resource type="PackedScene" uid="uid://d0ra3gmpaqk47" path="res://Ui.tscn" id="5_r3273"]
 [ext_resource type="PackedScene" uid="uid://day2ey1nff4wb" path="res://HouseArea.tscn" id="5_vpgls"]
 [ext_resource type="Script" path="res://HouseArea.gd" id="6_evg3j"]
 
@@ -21,7 +21,7 @@ position = Vector2(2475, 1877)
 [node name="Tilemap" parent="." instance=ExtResource("3_vsk5u")]
 
 [node name="Diggable2" parent="." instance=ExtResource("3_1d44m")]
-position = Vector2(359, 153)
+position = Vector2(423, 293)
 
 [node name="SpawnLocations" type="Node2D" parent="."]
 position = Vector2(126, 120)
@@ -39,7 +39,7 @@ position = Vector2(455, 417)
 position = Vector2(1146, 670)
 
 [node name="Diggable5" parent="." instance=ExtResource("3_1d44m")]
-position = Vector2(487, 450)
+position = Vector2(941, 442)
 
 [node name="Ui" parent="." instance=ExtResource("5_r3273")]
 
