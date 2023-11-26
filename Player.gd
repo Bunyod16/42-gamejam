@@ -106,13 +106,7 @@ func _process(delta):
 			$Sprites.scale = Vector2(-1, 1);
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
-		if (x_direction != -1):
-			x_direction = -1;
-			$Sprites.scale = Vector2(-1,1)
 	if Input.is_action_pressed("move_up"):
-		if (x_direction != 1):
-			x_direction = 1;
-			$Sprites.scale = Vector2(1,1)
 		velocity.y -= 1
 	move_and_collide(velocity)
 
@@ -123,11 +117,17 @@ func _process(delta):
 		dig_action.emit(self)
 
 	if velocity.length() > 0:
+		if (Input.is_action_pressed("attack")):
+			animation.play("WalkAttackRight")
+		else:
+			animation.play("WalkRight")
 		velocity = velocity.normalized() * speed
-		animation.play("WalkingRight")
 		#$AnimatedSprite2D.animation = "walking"
 	else:
-		animation.play("IdleRight")
+		if (Input.is_action_pressed("attack")):
+			animation.play("IdleAttackRight")
+		else:
+			animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
 
 	position = position.clamp(Vector2.ZERO, screen_size)
