@@ -155,7 +155,7 @@ func _process(delta):
 			else:
 				animation.play("IdleAttackRight")
 				$SwingAudio.play()
-			
+
 		else:
 			animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
@@ -271,7 +271,7 @@ func _update_player_speed_modifier():
 
 func _on_shovel_hit_area_entered(area: Area2D):
 	if (not area.owner.name.to_int() in GameManager.Players):
-		return 
+		return
 	$HitAudio.play()
 
 	var player_hit_id = area.owner.name.to_int()
@@ -280,7 +280,9 @@ func _on_shovel_hit_area_entered(area: Area2D):
 	print(name, " hit ", player_hit_id)
 
 	print("before", GameManager.Players)
-	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1, player_hit.gold)
+	GameManager.update_player_information(player_hit_id, player_hit.name, max(player_hit.health - 1, 0), player_hit.gold)
+	# what is the minimum in GDScript?
+
 	print("after", GameManager.Players)
 
 	print("SHOVEL HIT")
