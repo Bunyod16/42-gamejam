@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bwb1n6su7qnrp" path="res://assets/cowboy/CowBoyAttackingBody.png" id="9_toidv"]
 [ext_resource type="Texture2D" uid="uid://c7wtn53rnc6nd" path="res://assets/cowboy/CowBoyAttackingHat.png" id="10_angw2"]
 [ext_resource type="Texture2D" uid="uid://dslbmeg8kkoyc" path="res://assets/cowboy/CowBoyAttackingArm.png" id="11_8r3le"]
-[ext_resource type="AudioStream" uid="uid://g7g5oqo4sxc3" path="res://assets/audio/punch-140236.mp3" id="13_nsw5b"]
+[ext_resource type="AudioStream" path="res://assets/audio/punch-140236.mp3" id="13_nsw5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3ce"]
 size = Vector2(20, 27.5)
