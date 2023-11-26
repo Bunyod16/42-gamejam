@@ -233,7 +233,7 @@ func _update_gold_ui():
 		else:
 			gold_icons[i].texture = outline_gold_texture
 
-func handle_deliver_gold():
+func _handle_deliver_gold():
 	GameManager.Teams["1"]["total_gold"] += collected_gold_count
 	# print(GameManager.Teams["1"]["total_gold"])
 	collected_gold_count = 0
