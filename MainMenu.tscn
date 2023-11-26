@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://beja2csh1iinn"]
+[gd_scene load_steps=9 format=3 uid="uid://beja2csh1iinn"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_4bwjt"]
 [ext_resource type="PackedScene" uid="uid://b6ahe261jxno1" path="res://Player.tscn" id="2_y8gjh"]
@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="4_y7hmr"]
 [ext_resource type="FontFile" uid="uid://cto22mooe0sfs" path="res://assets/fonts/Peaberry Base/PeaberryBase.ttf" id="5_bfe8h"]
 [ext_resource type="Texture2D" uid="uid://73xoxx8d2r5w" path="res://assets/images/MainMenuBackground.png" id="7_bqjhq"]
+[ext_resource type="AudioStream" uid="uid://cqxo4ukptjm10" path="res://assets/audio/button-124476.mp3" id="7_d4fh6"]
+[ext_resource type="AudioStream" uid="uid://bw6mlsexu6qk1" path="res://assets/audio/Rednex - Cotton Eye Joe (minus 4).mp3" id="8_rker7"]
 
 [node name="multiplayer_test" type="Control"]
 layout_mode = 3
@@ -107,6 +109,13 @@ theme = ExtResource("3_lkl8u")
 placeholder_text = "Type Host IP"
 clear_button_enabled = true
 caret_blink = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_d4fh6")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rker7")
+autoplay = true
 
 [connection signal="pressed" from="MainMenuVContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MainMenuVContainer/Join" to="." method="_on_join_pressed"]

@@ -13,6 +13,7 @@ config_version=5
 config/name="GameJam42KL"
 run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+run/max_fps=120
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,7 +22,7 @@ GameManager="*res://GameManager.gd"
 
 [display]
 
-window/size/viewport_width=1900
+window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/initial_position_type=0
 window/main_scene="res://player.tscn"
@@ -73,5 +74,4 @@ attack={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.552941, 0.25098, 0.0313726, 1)

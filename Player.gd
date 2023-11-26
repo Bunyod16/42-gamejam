@@ -13,7 +13,7 @@ signal shovel_hit
 
 var collected_gold_count: int = 0
 var gold_icons: Array = []
-const gold_speed_modifier: Array = [1.0, 0.9, 0.77, 0.6]
+const gold_speed_modifiers: Array = [1.0, 0.9, 0.77, 0.6]
 var is_digging = false
 
 const shovel_texture = preload("res://assets/cowboy/Shovel.png")
@@ -29,7 +29,6 @@ signal dig_interrupted(player: Player)
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
 	connect("body_entered", Callable(self, "_on_body_entered"))
-	
 	$Sprites/ShovelHit.connect("area_entered", _on_shovel_hit_area_entered)
 #	print_tree_pretty() #BEST FUNCTION DONT DELETE
 
@@ -54,8 +53,8 @@ func change_hand_item(texture: Texture):
 	on_hand_walking_sprite.texture = texture
 	on_hand_attack_sprite.texture = texture
 
-const base_speed = 400
-@export var speed = 400 # How fast the player will move (pixels/sec).
+const base_speed = 1600
+@export var speed = 1600 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
 func _input(InputEvent):
@@ -105,20 +104,22 @@ func _process(delta):
 		pass
 
 	var velocity = Vector2.ZERO # The player's movement vector.
+	const base_velocity_constant = 2.0
+	var speed_modifier = gold_speed_modifiers[collected_gold_count]
 	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+		velocity.x += base_velocity_constant * speed_modifier
 		if (x_direction != 1):
 			x_direction = 1;
 			$Sprites.scale = Vector2(1, 1);
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
+		velocity.x -= base_velocity_constant * speed_modifier
 		if (x_direction != -1):
 			x_direction = -1;
 			$Sprites.scale = Vector2(-1, 1);
 	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+		velocity.y += base_velocity_constant * speed_modifier
 	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+		velocity.y -= base_velocity_constant * speed_modifier
 	move_and_collide(velocity)
 
 	# dig
@@ -233,7 +234,7 @@ func _update_gold_ui():
 		else:
 			gold_icons[i].texture = outline_gold_texture
 
-func handle_deliver_gold():
+func _handle_deliver_gold():
 	GameManager.Teams["1"]["total_gold"] += collected_gold_count
 	# print(GameManager.Teams["1"]["total_gold"])
 	collected_gold_count = 0
@@ -241,18 +242,20 @@ func handle_deliver_gold():
 	_update_player_speed_modifier()
 
 func _update_player_speed_modifier():
-	speed = base_speed * gold_speed_modifier[collected_gold_count]
+	speed = base_speed * gold_speed_modifiers[collected_gold_count]
 
 func _on_shovel_hit_area_entered(area: Area2D):
+	$AudioStreamPlayer.play()
+
 	var player_hit_id = area.owner.name.to_int()
 	var player_hit = GameManager.Players[player_hit_id]
-	
+
 	print(name, " hit ", player_hit_id)
-	
+
 	print("before", GameManager.Players)
 	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1)
 	print("after", GameManager.Players)
-	
+
 	change_hand_item(lasso_texture)
 	print("SHOVEL HIT")
 	print(area)

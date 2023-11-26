@@ -71,8 +71,8 @@ func _on_digging_interrupted(_player: Player):
 
 func spawn_gold_towards_player(player: Player):
 	var gold = Gold.instantiate()
-	print(global_position)
-	print(player.global_position)
+	print("Gold spawn position: ", global_position)
+	print("Player position: ", player.global_position)
 	get_parent().add_child(gold)
 	gold.global_position = global_position # Start at Diggable's position
 	gold.set_target(player.global_position)

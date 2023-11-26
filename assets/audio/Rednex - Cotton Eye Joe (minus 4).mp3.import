@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bw6mlsexu6qk1"
+path="res://.godot/imported/Rednex - Cotton Eye Joe (minus 4).mp3-470c51b428a861cfb7ead2853586cf19.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Rednex - Cotton Eye Joe (minus 4).mp3"
+dest_files=["res://.godot/imported/Rednex - Cotton Eye Joe (minus 4).mp3-470c51b428a861cfb7ead2853586cf19.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

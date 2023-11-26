@@ -6,6 +6,7 @@ var peer
 
 func _ready():
 	#Callback functions for certain event listeneres
+	connect("mouse_entered", _on_mouse_entered);
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.connected_to_server.connect(connected_to_server)
 
@@ -41,6 +42,11 @@ func _on_join_pressed():
 @rpc("any_peer", "call_local")
 func _on_start_pressed():
 	start_game.rpc()
+	
+
+func _on_mouse_entered():
+	$AudioStreamPlayer.play()
+
 
 #=================================#
 #=============UTILS===============#
