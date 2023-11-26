@@ -51,6 +51,8 @@ func _ready():
 
 
 func change_hand_item(texture: Texture):
+	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
+		return
 	on_hand_idle_sprite.texture = texture
 	on_hand_walking_sprite.texture = texture
 	on_hand_attack_sprite.texture = texture
@@ -100,7 +102,7 @@ func _process(delta):
 	# Rotate the weapon towards the mouse
 	update_cooldown(delta)
 	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
-	
+
 	for i in GameManager.Players:
 		var current_gold = GameManager.Players[i].gold
 		if (current_gold == 1):
