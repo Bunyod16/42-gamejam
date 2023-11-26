@@ -105,7 +105,7 @@ func _process(delta):
 
 	for i in GameManager.Players:
 		var current_gold = GameManager.Players[i].gold
-		if (current_gold == 1):
+		if (current_gold >= 5):
 			get_tree().quit()
 
 	# stop all inputs if stunned
