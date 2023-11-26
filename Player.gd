@@ -19,7 +19,6 @@ var is_digging = false
 
 const shovel_texture = preload("res://assets/cowboy/Shovel.png")
 const lasso_texture = preload("res://assets/cowboy/Lasso.png")
-
 const solid_gold_texture = preload("res://assets/gold.png")
 const outline_gold_texture = preload("res://assets/gold_outline.png")
 
@@ -43,7 +42,7 @@ func _ready():
 	$StunTimer.timeout.connect(Callable(self, "_on_stun_end"))
 
 	animation = $AnimationPlayer
-	lassoAnimation = $Lasso/AnimationPlayer
+	lassoAnimation = $Sprites/Lasso/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
 	on_hand_walking_sprite = $Sprites/OnHandWalkSprite
 	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
@@ -92,6 +91,8 @@ func _input(InputEvent):
 func _process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
+		# Get the mouse position in the world
+	# Rotate the weapon towards the mouse
 	update_cooldown(delta)
 
 	# stop all inputs if stunned
@@ -140,7 +141,9 @@ func _process(delta):
 	else:
 		if (Input.is_action_pressed("attack")):
 			animation.play("IdleAttackRight")
+			$Sprites/Lasso.show()
 			lassoAnimation.play("Throw")
+			
 		else:
 			animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
