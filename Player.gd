@@ -88,6 +88,10 @@ func _input(InputEvent):
 # 		current_diggable_area = null
 # 		# is_inside_diggable_area = false
 
+func shootLasso():
+	$Sprites/Lasso.show()
+	lassoAnimation.play("Throw")
+
 func _process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
@@ -133,16 +137,22 @@ func _process(delta):
 
 	if velocity.length() > 0:
 		if (Input.is_action_pressed("attack")):
-			animation.play("WalkAttackRight")
+			if (on_hand_attack_sprite == lasso_texture):
+				shootLasso()
+			else:
+				animation.play("WalkAttackRight")
 		else:
 			animation.play("WalkRight")
 		velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.animation = "walking"
 	else:
 		if (Input.is_action_pressed("attack")):
-			animation.play("IdleAttackRight")
-			$Sprites/Lasso.show()
-			lassoAnimation.play("Throw")
+			print(on_hand_attack_sprite)
+			if (on_hand_attack_sprite.texture == lasso_texture):
+				print("SHOOTING LASSO")
+				shootLasso()
+			else:
+				animation.play("IdleAttackRight")
 			
 		else:
 			animation.play("IdleRight")
