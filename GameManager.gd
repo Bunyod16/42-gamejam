@@ -35,15 +35,17 @@ func send_player_information(id, name, health, update=false):
 @rpc("any_peer")
 func update_player_information(id, name, health):
 	if GameManager.Players.has(id):
-		GameManager.Players[id].name = name
-		GameManager.Players[id].health = health
+		if GameManager.Players[id].health == health:
+			return
+		else:
+			GameManager.Players[id].health = health
 		
 	for i in multiplayer.get_peers():
 		print("IDSOMEWHERE:", i)
-		update_player_information_rpc(i, id, name, health)
+		update_player_information.rpc(id, name, health)
 
-func update_player_information_rpc(peer, id, name, health):
-	rpc_id(peer, "update_player_information", id, name, health)
+#func update_player_information_rpc(peer, id, name, health):
+#	rpc_id(peer, "update_player_information", id, name, health)
 			
 # Function to update a player's health
 @rpc("any_peer")
