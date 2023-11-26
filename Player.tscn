@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6ahe261jxno1"]
+[gd_scene load_steps=22 format=3 uid="uid://b6ahe261jxno1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_q1pry"]
 [ext_resource type="Texture2D" uid="uid://b5y8k5a8tcgoj" path="res://assets/cowboy/CowBoyWalkingBody.png" id="3_2xovu"]
@@ -13,11 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://c7wtn53rnc6nd" path="res://assets/cowboy/CowBoyAttackingHat.png" id="10_angw2"]
 [ext_resource type="Texture2D" uid="uid://dslbmeg8kkoyc" path="res://assets/cowboy/CowBoyAttackingArm.png" id="11_8r3le"]
 
-[sub_resource type="Animation" id="Animation_mxadd"]
-resource_name = "AttackRight"
-length = 0.5
-loop_mode = 1
-step = 0.05
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3ce"]
+size = Vector2(20, 27.5)
 
 [sub_resource type="Animation" id="Animation_fq824"]
 resource_name = "IdleAttackRight"
@@ -153,6 +150,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-2.54993, -5.27438, -4.28639, -3.23496, -2.93171, -2.93171, -2.93171, -2.93171]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ShovelHit/CollisionShape2D:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_7y4uk"]
@@ -375,6 +384,30 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../BodyArea/CollisionShape2D:disabled")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("ShovelHit/CollisionShape2D:disabled")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3a35b"]
@@ -739,6 +772,30 @@ tracks/29/keys = {
 "update": 0,
 "values": [-5.27438]
 }
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("ShovelHit/CollisionShape2D:disabled")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("../BodyArea/CollisionShape2D:disabled")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_t0elu"]
 resource_name = "WalkAttackRight"
@@ -886,6 +943,18 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-2.93171, -5.42145, -3.63345, -2.70771, -2.70771, -2.70771, -2.70771, -2.70771]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ShovelHit/CollisionShape2D:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_8ryfc"]
@@ -1109,10 +1178,21 @@ tracks/17/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../BodyArea/CollisionShape2D:disabled")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3jder"]
 _data = {
-"AttackRight": SubResource("Animation_mxadd"),
 "IdleAttackRight": SubResource("Animation_fq824"),
 "IdleRight": SubResource("Animation_7y4uk"),
 "RESET": SubResource("Animation_3a35b"),
@@ -1120,17 +1200,14 @@ _data = {
 "WalkRight": SubResource("Animation_8ryfc")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3ce"]
-size = Vector2(22, 34)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
-size = Vector2(18, 14)
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_70g4i"]
 properties/0/path = NodePath("..:position")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
+size = Vector2(18, 29)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_q1pry")
@@ -1213,21 +1290,18 @@ position = Vector2(1, -14)
 texture = ExtResource("11_8r3le")
 hframes = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
-libraries = {
-"": SubResource("AnimationLibrary_3jder")
-}
-
 [node name="ShovelHit" type="Area2D" parent="Sprites"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/ShovelHit"]
-position = Vector2(18, 1)
+position = Vector2(20, -13.75)
 shape = SubResource("RectangleShape2D_2l3ce")
 disabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_u4uyd")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprites")
+libraries = {
+"": SubResource("AnimationLibrary_3jder")
+}
 
 [node name="Cooldown" type="ProgressBar" parent="."]
 offset_left = -23.0
@@ -1284,5 +1358,12 @@ texture = ExtResource("9_ibido")
 
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 0.6
+
+[node name="BodyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_u4uyd")
+disabled = true
 
 [connection signal="area_entered" from="Sprites/ShovelHit" to="." method="_on_shovel_hit_area_entered"]

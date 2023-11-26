@@ -9,12 +9,12 @@ var on_hand_walking_sprite : Sprite2D
 var on_hand_attack_sprite : Sprite2D
 var is_stunned: bool = false
 const stun_duration: float = 0.6
-
-var is_digging: bool = false
+signal shovel_hit
 
 var collected_gold_count: int = 0
 var gold_icons: Array = []
 const gold_speed_modifier: Array = [1.0, 0.9, 0.77, 0.6]
+var is_digging = false
 
 const shovel_texture = preload("res://assets/cowboy/Shovel.png")
 const lasso_texture = preload("res://assets/cowboy/Lasso.png")
@@ -22,13 +22,15 @@ const lasso_texture = preload("res://assets/cowboy/Lasso.png")
 const solid_gold_texture = preload("res://assets/gold.png")
 const outline_gold_texture = preload("res://assets/gold_outline.png")
 
-
 # signal dig_action(player, diggable_area)
 signal dig_action(player: Player)
 signal dig_interrupted(player: Player)
 
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(name.to_int())
+	connect("body_entered", Callable(self, "_on_body_entered"))
+	
+	$Sprites/ShovelHit.connect("area_entered", _on_shovel_hit_area_entered)
 #	print_tree_pretty() #BEST FUNCTION DONT DELETE
 
 	if multiplayer.get_unique_id() == name.to_int():
@@ -37,11 +39,10 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 	gold_icons = [$Control/Gold1, $Control/Gold2, $Control/Gold3]
-
 	$StunTimer.wait_time = stun_duration
 	$StunTimer.timeout.connect(Callable(self, "_on_stun_end"))
 
-	animation = $Sprites/AnimationPlayer
+	animation = $AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
 	on_hand_walking_sprite = $Sprites/OnHandWalkSprite
 	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
@@ -241,4 +242,8 @@ func handle_deliver_gold():
 
 func _update_player_speed_modifier():
 	speed = base_speed * gold_speed_modifier[collected_gold_count]
-	# print(speed)
+
+func _on_shovel_hit_area_entered(area):
+	change_hand_item(lasso_texture)
+	print("SHOVEL HIT")
+	print(area)

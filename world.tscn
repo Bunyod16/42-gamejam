@@ -37,3 +37,6 @@ position = Vector2(1146, 670)
 
 [node name="Diggable5" parent="." instance=ExtResource("3_1d44m")]
 position = Vector2(487, 450)
+
+[node name="Player" parent="." instance=ExtResource("2_c68e3")]
+position = Vector2(257, 213)
