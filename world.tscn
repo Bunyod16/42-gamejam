@@ -50,3 +50,39 @@ script = ExtResource("6_evg3j")
 [node name="HouseArea2" parent="." instance=ExtResource("5_vpgls")]
 position = Vector2(1306, 108)
 script = ExtResource("6_evg3j")
+
+[node name="Diggable6" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(533, 254)
+
+[node name="Diggable7" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(719, 588)
+
+[node name="Diggable8" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(649, 470)
+
+[node name="Diggable9" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(1025, 316)
+
+[node name="Diggable10" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(487, 544)
+
+[node name="Diggable11" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(1039, 700)
+
+[node name="Diggable12" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(775, 704)
+
+[node name="Diggable13" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(541, 618)
+
+[node name="Diggable14" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(1043, 514)
+
+[node name="Diggable15" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(881, 598)
+
+[node name="Diggable16" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(695, 270)
+
+[node name="Diggable17" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(808, 354)
