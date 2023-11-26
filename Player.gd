@@ -6,7 +6,7 @@ var current_animation = null
 var animation : AnimationPlayer
 var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
-
+var on_hand_attack_sprite : Sprite2D
 var is_stunned: bool = false
 
 var collected_gold_count: int = 0
@@ -36,13 +36,15 @@ func _ready():
 	
 	animation = $Sprites/AnimationPlayer
 	on_hand_idle_sprite = $Sprites/OnHandIdleSprite
-	on_hand_walking_sprite = $Sprites/OnHandWalkingSprite
+	on_hand_walking_sprite = $Sprites/OnHandWalkSprite
+	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
 	# Play the idle animation when the scene starts
 	animation.play("IdleRight")
 
 func change_hand_item(texture: Texture):
 	on_hand_idle_sprite.texture = texture
 	on_hand_walking_sprite.texture = texture
+	on_hand_attack_sprite.texture = texture
 
 const base_speed = 400
 @export var speed = 400 # How fast the player will move (pixels/sec).
