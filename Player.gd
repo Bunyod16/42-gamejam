@@ -9,6 +9,7 @@ var on_hand_walking_sprite : Sprite2D
 
 var collected_gold_count: int = 0
 var gold_icons: Array = []
+const gold_speed_modifier: Array = [1.0, 0.9, 0.77, 0.6]
 
 const shovel_texture = preload("res://assets/cowboy/Shovel.png")
 const lasso_texture = preload("res://assets/cowboy/Lasso.png")
@@ -41,6 +42,7 @@ func change_hand_item(texture: Texture):
 	on_hand_idle_sprite.texture = texture
 	on_hand_walking_sprite.texture = texture
 
+const base_speed = 400
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
@@ -160,20 +162,22 @@ func handle_collect_gold():
 	if collected_gold_count < 3:
 		collected_gold_count += 1
 		_update_gold_ui()
+		_update_player_speed_modifier()
 	
 func _update_gold_ui():
 	for i in range(3):
 		if (i < collected_gold_count):
 			gold_icons[i].texture = solid_gold_texture
-			pass
 		else:
 			gold_icons[i].texture = outline_gold_texture
-			pass
 	
 func handle_deliver_gold():
 	GameManager.Teams["1"]["total_gold"] += collected_gold_count
 	# print(GameManager.Teams["1"]["total_gold"])
 	collected_gold_count = 0
 	_update_gold_ui()
-	pass
+	_update_player_speed_modifier()
 
+func _update_player_speed_modifier():
+	# print(gold_speed_modifier[collected_gold_count])
+	speed = base_speed * gold_speed_modifier[collected_gold_count]
