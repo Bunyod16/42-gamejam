@@ -38,10 +38,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 384.0
-offset_right = 376.0
-offset_bottom = 578.0
+offset_left = 233.0
+offset_top = 125.0
+offset_right = 577.0
+offset_bottom = 319.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("4_ih1u0")
@@ -99,6 +99,10 @@ stream = ExtResource("7_bpmme")
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_i525g")
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(403, 267)
+zoom = Vector2(2.5, 2.5)
 
 [connection signal="pressed" from="MainMenuVContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
