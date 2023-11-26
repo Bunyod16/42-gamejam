@@ -2,6 +2,7 @@ extends Node
 
 var Players = {}
 var Teams = { "1": { "total_gold": 0 }, "2": { "total_gold": 0 } }
+var end_game_scene = preload("res://EndScreen.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,6 +50,7 @@ func update_player_information(id, name, health, gold, collected_gold):
 	for i in multiplayer.get_peers():
 		print("IDSOMEWHERE:", i)
 		update_player_information.rpc(id, name, health, gold, collected_gold)
+
 
 #func update_player_information_rpc(peer, id, name, health):
 #	rpc_id(peer, "update_player_information", id, name, health)

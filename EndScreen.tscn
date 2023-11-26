@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://busoyqn8viwgw"]
+
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_tulhg"]
+[ext_resource type="PackedScene" uid="uid://b6ahe261jxno1" path="res://Player.tscn" id="2_3b68e"]
+[ext_resource type="Texture2D" uid="uid://73xoxx8d2r5w" path="res://assets/images/MainMenuBackground.png" id="3_pyrxd"]
+[ext_resource type="Theme" uid="uid://l82ee7rv5w7q" path="res://ui/ui.tres" id="4_ih1u0"]
+[ext_resource type="FontFile" uid="uid://bphwfmukl7mmw" path="res://assets/fonts/Peaberry Base/Peaberry-Base.otf" id="5_bclds"]
+[ext_resource type="AudioStream" uid="uid://cqxo4ukptjm10" path="res://assets/audio/button-124476.mp3" id="7_bpmme"]
+[ext_resource type="AudioStream" uid="uid://bw6mlsexu6qk1" path="res://assets/audio/Rednex - Cotton Eye Joe (minus 4).mp3" id="8_i525g"]
+
+[node name="multiplayer_test" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tulhg")
+player_scene = ExtResource("2_3b68e")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+z_as_relative = false
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 0
+offset_right = 1533.0
+offset_bottom = 923.0
+scale = Vector2(0.52, 0.65)
+texture = ExtResource("3_pyrxd")
+
+[node name="Transparency" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="MainMenuVContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 233.0
+offset_top = 125.0
+offset_right = 577.0
+offset_bottom = 319.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_ih1u0")
+alignment = 2
+
+[node name="Host" type="Button" parent="MainMenuVContainer"]
+layout_mode = 2
+theme = ExtResource("4_ih1u0")
+theme_override_fonts/font = ExtResource("5_bclds")
+theme_override_font_sizes/font_size = 48
+text = "GAME ENDED"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Player.tscn")
+spawn_path = NodePath("..")
+
+[node name="IpPopup" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 200.0
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 164.0
+theme = ExtResource("4_ih1u0")
+fit_content = true
+scroll_active = false
+
+[node name="WaitingForHost" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 200.0
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 164.0
+theme = ExtResource("4_ih1u0")
+text = "Waiting for host to start..."
+fit_content = true
+scroll_active = false
+
+[node name="IpInput" type="LineEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 64.0
+offset_right = 600.0
+offset_bottom = 164.0
+theme = ExtResource("4_ih1u0")
+placeholder_text = "Type Host IP"
+clear_button_enabled = true
+caret_blink = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bpmme")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_i525g")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(403, 267)
+zoom = Vector2(2.5, 2.5)
+
+[connection signal="pressed" from="MainMenuVContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
+[connection signal="text_submitted" from="IpInput" to="." method="_on_ip_input_text_submitted"]

@@ -99,8 +99,12 @@ func _process(delta):
 		# Get the mouse position in the world
 	# Rotate the weapon towards the mouse
 	update_cooldown(delta)
-
 	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
+	
+	for i in GameManager.Players:
+		var current_gold = GameManager.Players[i].gold
+		if (current_gold == 1):
+			get_tree().quit()
 
 	# stop all inputs if stunned
 	if is_stunned:

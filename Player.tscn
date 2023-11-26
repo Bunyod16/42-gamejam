@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bwb1n6su7qnrp" path="res://assets/cowboy/CowBoyAttackingBody.png" id="9_toidv"]
 [ext_resource type="Texture2D" uid="uid://c7wtn53rnc6nd" path="res://assets/cowboy/CowBoyAttackingHat.png" id="10_angw2"]
 [ext_resource type="Texture2D" uid="uid://dslbmeg8kkoyc" path="res://assets/cowboy/CowBoyAttackingArm.png" id="11_8r3le"]
-[ext_resource type="PackedScene" uid="uid://qh5c2raoaadc" path="res://lasso.tscn" id="12_wnub6"]
+[ext_resource type="PackedScene" uid="uid://dj6c3grte511x" path="res://lasso.tscn" id="12_wnub6"]
 [ext_resource type="AudioStream" uid="uid://g7g5oqo4sxc3" path="res://assets/audio/punch-140236.mp3" id="13_nsw5b"]
 [ext_resource type="Texture2D" uid="uid://cuvwffcvxqclx" path="res://assets/gold.png" id="13_tehnb"]
 [ext_resource type="AudioStream" uid="uid://d11eqxxc0yj42" path="res://assets/audio/swing-6045.mp3" id="15_oefo6"]
