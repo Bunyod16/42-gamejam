@@ -37,7 +37,7 @@ text = "Player 1"
 
 [node name="Heart Container" type="HBoxContainer" parent="HBoxContainer/0"]
 layout_mode = 2
-theme_override_constants/separation = -54
+theme_override_constants/separation = -11
 alignment = 1
 
 [node name="Heart" type="TextureRect" parent="HBoxContainer/0/Heart Container"]
@@ -46,19 +46,15 @@ layout_mode = 2
 texture = ExtResource("3_l3y5i")
 stretch_mode = 3
 
-[node name="Heart2" type="TextureRect" parent="HBoxContainer/0/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="X" type="Label" parent="HBoxContainer/0/Heart Container"]
 layout_mode = 2
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "x"
 
-[node name="Heart3" type="TextureRect" parent="HBoxContainer/0/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Label" type="Label" parent="HBoxContainer/0/Heart Container"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
 
 [node name="Gold Container" type="HBoxContainer" parent="HBoxContainer/0"]
 layout_mode = 2
@@ -72,15 +68,15 @@ size_flags_vertical = 4
 texture = ExtResource("4_ffxis")
 stretch_mode = 3
 
+[node name="X" type="Label" parent="HBoxContainer/0/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x"
+
 [node name="Label" type="Label" parent="HBoxContainer/0/Gold Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "x0"
-
-[node name="Label2" type="Label" parent="HBoxContainer/0/Gold Container"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "x0"
+text = "0"
 
 [node name="1" type="VBoxContainer" parent="HBoxContainer" groups=["PlayerUis"]]
 visible = false
@@ -95,7 +91,7 @@ text = "Player 1"
 
 [node name="Heart Container" type="HBoxContainer" parent="HBoxContainer/1"]
 layout_mode = 2
-theme_override_constants/separation = -54
+theme_override_constants/separation = -11
 alignment = 1
 
 [node name="Heart" type="TextureRect" parent="HBoxContainer/1/Heart Container"]
@@ -104,19 +100,15 @@ layout_mode = 2
 texture = ExtResource("3_l3y5i")
 stretch_mode = 3
 
-[node name="Heart2" type="TextureRect" parent="HBoxContainer/1/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="X" type="Label" parent="HBoxContainer/1/Heart Container"]
 layout_mode = 2
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "x"
 
-[node name="Heart3" type="TextureRect" parent="HBoxContainer/1/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Label" type="Label" parent="HBoxContainer/1/Heart Container"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
 
 [node name="Gold Container" type="HBoxContainer" parent="HBoxContainer/1"]
 layout_mode = 2
@@ -130,15 +122,15 @@ size_flags_vertical = 4
 texture = ExtResource("4_ffxis")
 stretch_mode = 3
 
+[node name="X" type="Label" parent="HBoxContainer/1/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x"
+
 [node name="Label" type="Label" parent="HBoxContainer/1/Gold Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "x0"
-
-[node name="Label2" type="Label" parent="HBoxContainer/1/Gold Container"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "x0"
+text = "0"
 
 [node name="2" type="VBoxContainer" parent="HBoxContainer" groups=["PlayerUis"]]
 visible = false
@@ -153,7 +145,7 @@ text = "Player 1"
 
 [node name="Heart Container" type="HBoxContainer" parent="HBoxContainer/2"]
 layout_mode = 2
-theme_override_constants/separation = -54
+theme_override_constants/separation = -11
 alignment = 1
 
 [node name="Heart" type="TextureRect" parent="HBoxContainer/2/Heart Container"]
@@ -162,19 +154,15 @@ layout_mode = 2
 texture = ExtResource("3_l3y5i")
 stretch_mode = 3
 
-[node name="Heart2" type="TextureRect" parent="HBoxContainer/2/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="X" type="Label" parent="HBoxContainer/2/Heart Container"]
 layout_mode = 2
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "x"
 
-[node name="Heart3" type="TextureRect" parent="HBoxContainer/2/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Label" type="Label" parent="HBoxContainer/2/Heart Container"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
 
 [node name="Gold Container" type="HBoxContainer" parent="HBoxContainer/2"]
 layout_mode = 2
@@ -188,15 +176,15 @@ size_flags_vertical = 4
 texture = ExtResource("4_ffxis")
 stretch_mode = 3
 
+[node name="X" type="Label" parent="HBoxContainer/2/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x"
+
 [node name="Label" type="Label" parent="HBoxContainer/2/Gold Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "x0"
-
-[node name="Label2" type="Label" parent="HBoxContainer/2/Gold Container"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "x0"
+text = "0"
 
 [node name="3" type="VBoxContainer" parent="HBoxContainer" groups=["PlayerUis"]]
 visible = false
@@ -211,7 +199,7 @@ text = "Player 1"
 
 [node name="Heart Container" type="HBoxContainer" parent="HBoxContainer/3"]
 layout_mode = 2
-theme_override_constants/separation = -54
+theme_override_constants/separation = -11
 alignment = 1
 
 [node name="Heart" type="TextureRect" parent="HBoxContainer/3/Heart Container"]
@@ -220,19 +208,15 @@ layout_mode = 2
 texture = ExtResource("3_l3y5i")
 stretch_mode = 3
 
-[node name="Heart2" type="TextureRect" parent="HBoxContainer/3/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="X" type="Label" parent="HBoxContainer/3/Heart Container"]
 layout_mode = 2
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "x"
 
-[node name="Heart3" type="TextureRect" parent="HBoxContainer/3/Heart Container"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Label" type="Label" parent="HBoxContainer/3/Heart Container"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_l3y5i")
-stretch_mode = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
 
 [node name="Gold Container" type="HBoxContainer" parent="HBoxContainer/3"]
 layout_mode = 2
@@ -246,12 +230,12 @@ size_flags_vertical = 4
 texture = ExtResource("4_ffxis")
 stretch_mode = 3
 
+[node name="X" type="Label" parent="HBoxContainer/3/Gold Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "x"
+
 [node name="Label" type="Label" parent="HBoxContainer/3/Gold Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "x0"
-
-[node name="Label2" type="Label" parent="HBoxContainer/3/Gold Container"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "x0"
+text = "0"
