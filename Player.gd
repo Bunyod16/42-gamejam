@@ -12,7 +12,7 @@ var is_stunned: bool = false
 const stun_duration: float = 0.6
 signal shovel_hit
 
-var collected_gold_count: int = 0
+#var collected_gold_count: int = 0
 var gold_icons: Array = []
 const gold_speed_modifiers: Array = [1.0, 0.9, 0.77, 0.6]
 var is_digging = false
@@ -48,6 +48,7 @@ func _ready():
 	on_hand_attack_sprite = $Sprites/OnHandAttackSprite
 	# Play the idle animation when the scene starts
 	animation.play("IdleRight")
+	
 
 func change_hand_item(texture: Texture):
 	on_hand_idle_sprite.texture = texture
@@ -98,6 +99,8 @@ func _process(delta):
 		# Get the mouse position in the world
 	# Rotate the weapon towards the mouse
 	update_cooldown(delta)
+	
+	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
 
 	# stop all inputs if stunned
 	if is_stunned:
@@ -159,6 +162,20 @@ func _process(delta):
 		#$AnimatedSprite2D.play()
 
 	position = position.clamp(Vector2.ZERO, screen_size)
+	
+	for i in range(3):
+		var node = get_node("Control/Gold" + str(i +1))
+		if (i < collected_gold_count):
+			node.texture = solid_gold_texture
+		else:
+			node.texture = outline_gold_texture
+
+#	for i in range(3):
+#		if (i < collected_gold_count):
+#			gold_icons[i].texture = solid_gold_texture
+#		else:
+#			gold_icons[i].texture = outline_gold_texture
+
 
 
 var weapon_cooldown_duration = 3.0
@@ -236,14 +253,21 @@ func _interrupt_digging():
 
 # Gold collection
 func handle_collect_gold():
+	var player_id = name.to_int()
+	var player_obj = GameManager.Players[player_id]
+	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
 	print("Collecting gold!!")
 	# TODO: handle max 3 gold collected?
 	if collected_gold_count < 3:
-		collected_gold_count += 1
+		GameManager.update_player_information(player_id, player_obj.name, player_obj.health, player_obj.gold + collected_gold_count, collected_gold_count + 1)
 		_update_gold_ui()
 		_update_player_speed_modifier()
 
 func _update_gold_ui():
+	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
+	
+#	for player in multiplayer.get_peers():
+#		var collected_gold_count = GameManager.Players[player].collected_gold
 	for i in range(3):
 		if (i < collected_gold_count):
 			gold_icons[i].texture = solid_gold_texture
@@ -256,16 +280,18 @@ func _handle_deliver_gold():
 	print(name)
 	var player_id = name.to_int()
 	var player_obj = GameManager.Players[player_id]
+	var collected_gold_count = GameManager.Players[player_id].collected_gold
 
 	print("before", GameManager.Players)
-	GameManager.update_player_information(player_id, player_obj.name, player_obj.health, player_obj.gold + collected_gold_count)
+	GameManager.update_player_information(player_id, player_obj.name, player_obj.health, player_obj.gold + collected_gold_count, 0)
 	print("after", GameManager.Players)
 
-	collected_gold_count = 0
+	collected_gold_count = 0 #Change
 	_update_gold_ui()
 	_update_player_speed_modifier()
 
 func _update_player_speed_modifier():
+	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
 	speed = base_speed * gold_speed_modifiers[collected_gold_count]
 
 func _on_shovel_hit_area_entered(area: Area2D):
@@ -279,7 +305,7 @@ func _on_shovel_hit_area_entered(area: Area2D):
 	print(name, " hit ", player_hit_id)
 
 	print("before", GameManager.Players)
-	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1, player_hit.gold)
+	GameManager.update_player_information(player_hit_id, player_hit.name, player_hit.health - 1, player_hit.gold, player_hit.collected_gold)
 	print("after", GameManager.Players)
 
 	print("SHOVEL HIT")

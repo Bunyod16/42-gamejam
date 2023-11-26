@@ -20,6 +20,7 @@ func send_player_information(id, name, health, update=false):
 			"id": id,
 			"health": health,
 			"gold": 0,
+			"collected_gold": 0
 		}
 	else:
 		if update:
@@ -34,17 +35,20 @@ func send_player_information(id, name, health, update=false):
 
 
 @rpc("any_peer")
-func update_player_information(id, name, health, gold):
+func update_player_information(id, name, health, gold, collected_gold):
 	if GameManager.Players.has(id):
-		if GameManager.Players[id].health == health and GameManager.Players[id].gold == gold:
+		if (GameManager.Players[id].health == health and 
+			GameManager.Players[id].gold == gold and 
+			GameManager.Players[id].collected_gold == collected_gold):
 			return
 		else:
 			GameManager.Players[id].health = health
 			GameManager.Players[id].gold = gold
+			GameManager.Players[id].collected_gold = collected_gold
 
 	for i in multiplayer.get_peers():
 		print("IDSOMEWHERE:", i)
-		update_player_information.rpc(id, name, health, gold)
+		update_player_information.rpc(id, name, health, gold, collected_gold)
 
 #func update_player_information_rpc(peer, id, name, health):
 #	rpc_id(peer, "update_player_information", id, name, health)
