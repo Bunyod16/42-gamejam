@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bwb1n6su7qnrp" path="res://assets/cowboy/CowBoyAttackingBody.png" id="9_toidv"]
 [ext_resource type="Texture2D" uid="uid://c7wtn53rnc6nd" path="res://assets/cowboy/CowBoyAttackingHat.png" id="10_angw2"]
 [ext_resource type="Texture2D" uid="uid://dslbmeg8kkoyc" path="res://assets/cowboy/CowBoyAttackingArm.png" id="11_8r3le"]
-[ext_resource type="PackedScene" uid="uid://dj6c3grte511x" path="res://lasso.tscn" id="13_2d5y1"]
+[ext_resource type="PackedScene" uid="uid://ucx5id7g6dd8" path="res://lasso.tscn" id="12_wnub6"]
 [ext_resource type="AudioStream" uid="uid://g7g5oqo4sxc3" path="res://assets/audio/punch-140236.mp3" id="13_nsw5b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3ce"]
@@ -1290,9 +1290,9 @@ position = Vector2(20, -13.75)
 shape = SubResource("RectangleShape2D_2l3ce")
 disabled = true
 
-[node name="Lasso" parent="Sprites" instance=ExtResource("13_2d5y1")]
-position = Vector2(190, -14)
-scale = Vector2(1.3, 1.3)
+[node name="Lasso" parent="Sprites" instance=ExtResource("12_wnub6")]
+position = Vector2(178, -11)
+scale = Vector2(1.2, 1.2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprites")
@@ -1370,8 +1370,5 @@ shape = SubResource("RectangleShape2D_gikht")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_nsw5b")
-
-[node name="Lasso" parent="." instance=ExtResource("13_2d5y1")]
-position = Vector2(149, -12)
 
 [connection signal="area_entered" from="Sprites/ShovelHit" to="." method="_on_shovel_hit_area_entered"]
