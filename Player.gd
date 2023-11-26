@@ -261,7 +261,7 @@ func handle_collect_gold():
 	print("Collecting gold!!")
 	# TODO: handle max 3 gold collected?
 	if collected_gold_count < 3:
-		GameManager.update_player_information(player_id, player_obj.name, player_obj.health, player_obj.gold + collected_gold_count, collected_gold_count + 1)
+		GameManager.update_player_information(player_id, player_obj.name, player_obj.health, player_obj.gold, collected_gold_count + 1)
 		_update_gold_ui()
 		_update_player_speed_modifier()
 
