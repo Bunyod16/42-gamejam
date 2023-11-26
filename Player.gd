@@ -151,8 +151,10 @@ func _process(delta):
 			if (on_hand_attack_sprite.texture == lasso_texture):
 				print("SHOOTING LASSO")
 				shootLasso()
+				$Swoosh.play()
 			else:
 				animation.play("IdleAttackRight")
+				$SwingAudio.play()
 			
 		else:
 			animation.play("IdleRight")
@@ -167,7 +169,6 @@ var cooldown_timer = 0.0
 func use_weapon():
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
-
 	if cooldown_timer <= 0:
 		# TODO: Use weapon, do things to its UI etc
 		start_cooldown()
@@ -271,7 +272,7 @@ func _update_player_speed_modifier():
 func _on_shovel_hit_area_entered(area: Area2D):
 	if (not area.owner.name.to_int() in GameManager.Players):
 		return 
-	$AudioStreamPlayer.play()
+	$HitAudio.play()
 
 	var player_hit_id = area.owner.name.to_int()
 	var player_hit = GameManager.Players[player_hit_id]
