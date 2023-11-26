@@ -7,6 +7,8 @@ var animation : AnimationPlayer
 var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
 
+var is_stunned: bool = false
+
 var collected_gold_count: int = 0
 var gold_icons: Array = []
 const gold_speed_modifier: Array = [1.0, 0.9, 0.77, 0.6]
@@ -47,6 +49,9 @@ const base_speed = 400
 var screen_size # Size of the game window.
 
 func _input(InputEvent):
+	# stop all inputs if stunned
+	if is_stunned:
+		return
 	# listen to SPACEBAR (for weapon)
 	if Input.is_action_just_pressed("ui_accept"):
 		print("space pressed")
@@ -57,7 +62,6 @@ func _input(InputEvent):
 
 	if Input.is_action_just_pressed("equip_lasso"):
 		change_hand_item(lasso_texture)
-
 
 # handles Player being in a Diggable area
 # var is_inside_diggable_area: bool = false
@@ -77,7 +81,18 @@ func _input(InputEvent):
 func _process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
-
+	update_cooldown(delta)
+	
+	# stop all inputs if stunned
+	if is_stunned:
+		animation.pause()
+		# TODO: add dazed status
+		return
+	else:
+		animation.play()
+		# TODO: remove dazed status
+		pass
+		
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -117,7 +132,7 @@ func _process(delta):
 
 	position = position.clamp(Vector2.ZERO, screen_size)
 
-	update_cooldown(delta)
+	
 
 var weapon_cooldown_duration = 3.0
 var cooldown_timer = 0.0
