@@ -159,9 +159,9 @@ func handle_collect_gold():
 	# TODO: handle max 3 gold collected?
 	if collected_gold_count < 3:
 		collected_gold_count += 1
-		update_gold_ui()
+		_update_gold_ui()
 	
-func update_gold_ui():
+func _update_gold_ui():
 	for i in range(3):
 		if (i < collected_gold_count):
 			gold_icons[i].texture = solid_gold_texture
@@ -170,6 +170,10 @@ func update_gold_ui():
 			gold_icons[i].texture = outline_gold_texture
 			pass
 	
-func deliver_gold():
+func handle_deliver_gold():
+	GameManager.Teams["1"]["total_gold"] += collected_gold_count
+	# print(GameManager.Teams["1"]["total_gold"])
+	collected_gold_count = 0
+	_update_gold_ui()
 	pass
 

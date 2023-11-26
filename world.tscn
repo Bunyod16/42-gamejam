@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://WorldManager.gd" id="1_opner"]
 [ext_resource type="PackedScene" uid="uid://b6ahe261jxno1" path="res://Player.tscn" id="2_c68e3"]
 [ext_resource type="PackedScene" uid="uid://vh5ix74uqj02" path="res://Diggable.tscn" id="3_1d44m"]
-[ext_resource type="PackedScene" path="res://tilemap.tscn" id="3_vsk5u"]
+[ext_resource type="PackedScene" uid="uid://bw113t8ykxaqt" path="res://tilemap.tscn" id="3_vsk5u"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -28,3 +28,12 @@ position = Vector2(100, 100)
 
 [node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoints"]]
 position = Vector2(1200, 600)
+
+[node name="Diggable3" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(455, 417)
+
+[node name="Diggable4" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(1146, 670)
+
+[node name="Diggable5" parent="." instance=ExtResource("3_1d44m")]
+position = Vector2(487, 450)
