@@ -18,18 +18,17 @@ player_scene = ExtResource("2_y8gjh")
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
 z_as_relative = false
-custom_minimum_size = Vector2(800, 600)
 layout_mode = 0
-offset_right = 1533.0
-offset_bottom = 923.0
+offset_right = 3685.0
+offset_bottom = 1658.0
 scale = Vector2(0.52, 0.65)
 texture = ExtResource("7_bqjhq")
 
 [node name="Transparency" type="Panel" parent="."]
 z_index = -1
 layout_mode = 0
-offset_right = 800.0
-offset_bottom = 600.0
+offset_right = 1908.0
+offset_bottom = 1076.0
 
 [node name="MainMenuVContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
