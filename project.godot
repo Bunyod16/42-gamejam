@@ -21,8 +21,8 @@ GameManager="*res://GameManager.gd"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
+window/size/viewport_width=1900
+window/size/viewport_height=1080
 window/size/initial_position_type=0
 window/main_scene="res://player.tscn"
 window/defaults/default_clear_color=Color(0.3, 0.3, 0.3, 1)
@@ -73,4 +73,5 @@ attack={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.552941, 0.25098, 0.0313726, 1)
