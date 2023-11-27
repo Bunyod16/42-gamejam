@@ -16,6 +16,8 @@ func _on_area_2d_area_entered(area):
 		return
 	if get_parent().get_parent() == null:
 		return
+	if area.owner == null:
+		return
 	if area.owner.name.to_int() not in GameManager.Players:
 		return
 		
