@@ -30,7 +30,7 @@ position = Vector2(126, 120)
 position = Vector2(100, 100)
 
 [node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoints"]]
-position = Vector2(22, 87)
+position = Vector2(1132, 615)
 
 [node name="Diggable3" parent="." instance=ExtResource("3_1d44m")]
 position = Vector2(455, 417)
