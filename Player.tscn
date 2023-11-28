@@ -1217,6 +1217,18 @@ properties/5/path = NodePath("../AnimationPlayer:current_animation")
 properties/5/spawn = true
 properties/5/sync = true
 properties/5/watch = false
+properties/6/path = NodePath("..:on_hand_item")
+properties/6/spawn = true
+properties/6/sync = true
+properties/6/watch = false
+properties/7/path = NodePath("..:lasso_animation_timer")
+properties/7/spawn = true
+properties/7/sync = true
+properties/7/watch = false
+properties/8/path = NodePath("..:lasso_is_shooting")
+properties/8/spawn = true
+properties/8/sync = true
+properties/8/watch = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4uyd"]
 size = Vector2(18, 29)
@@ -1401,5 +1413,9 @@ stream = ExtResource("15_oefo6")
 
 [node name="Swoosh" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_tuev4")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://lasso.tscn")
+spawn_path = NodePath("..")
 
 [connection signal="area_entered" from="Sprites/ShovelHit" to="." method="_on_shovel_hit_area_entered"]

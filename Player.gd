@@ -5,6 +5,9 @@ var x_direction = 1
 var current_animation = null
 var animation : AnimationPlayer
 var lassoAnimation : AnimationPlayer
+@export var on_hand_item = "shovel"
+@export var lasso_animation_timer = 0.0
+@export var lasso_is_shooting = false
 var on_hand_idle_sprite : Sprite2D
 var on_hand_walking_sprite : Sprite2D
 var on_hand_attack_sprite : Sprite2D
@@ -50,12 +53,13 @@ func _ready():
 	animation.play("IdleRight")
 
 
-func change_hand_item(texture: Texture):
+func change_hand_item(texture: Texture, item: String):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
-	on_hand_idle_sprite.texture = texture
-	on_hand_walking_sprite.texture = texture
-	on_hand_attack_sprite.texture = texture
+	on_hand_item = item
+#	on_hand_idle_sprite.texture = texture
+#	on_hand_walking_sprite.texture = texture
+#	on_hand_attack_sprite.texture = texture
 
 const base_speed = 1600
 @export var speed = 1600 # How fast the player will move (pixels/sec).
@@ -71,10 +75,24 @@ func _input(InputEvent):
 		use_weapon()
 
 	if Input.is_action_just_pressed("equip_shovel"):
-		change_hand_item(shovel_texture)
+		change_hand_item(shovel_texture, "shovel")
 
 	if Input.is_action_just_pressed("equip_lasso"):
-		change_hand_item(lasso_texture)
+		change_hand_item(lasso_texture, "lasso")
+		
+	if Input.is_action_just_pressed("attack"):
+		if (on_hand_item == "lasso"):
+			if lassoAnimation.is_playing(): return
+			print("SHOOTING LASSO")
+			lasso_is_shooting = true
+			advance_lasso_animation(lasso_animation_timer)
+			$Swoosh.play()
+		else:
+			animation.play("IdleAttackRight")
+			$SwingAudio.play()
+#
+#		else:
+#			animation.play("IdleRight")
 
 # handles Player being in a Diggable area
 # var is_inside_diggable_area: bool = false
@@ -94,11 +112,48 @@ func _input(InputEvent):
 func shootLasso():
 	$Sprites/Lasso.show()
 	lassoAnimation.play("Throw")
+	
+func advance_lasso_animation(time_elapsed):
+	print("lasso timer updated+ :", time_elapsed)
+	print("lasso frame:", lasso_animation_timer)
+
+	if (lasso_animation_timer == 0):
+		$Sprites/Lasso.show()
+		print("ANIMATION STARTED PLAYING")
+		lassoAnimation.play("Throw")
+	if (lasso_animation_timer >= 1.6):
+		print("SHOOTING LASSO DONE")
+		lassoAnimation.play("Throw")
+		lassoAnimation.seek(lasso_animation_timer)
+		lasso_animation_timer = 0
+		lasso_is_shooting = false
+		$Sprites/Lasso.hide()
+		return
+	else:
+		print("PLAYING LASSO")
+		lassoAnimation.play("Throw")
+		lassoAnimation.seek(lasso_animation_timer)
+
+	lasso_animation_timer += time_elapsed
 
 func _process(delta):
+	if lasso_is_shooting:
+		advance_lasso_animation(delta)
+		
+	if on_hand_item == "lasso":
+		on_hand_idle_sprite.texture = lasso_texture
+		on_hand_walking_sprite.texture = lasso_texture
+		on_hand_attack_sprite.texture = lasso_texture
+	if on_hand_item == "shovel":
+		on_hand_idle_sprite.texture = shovel_texture
+		on_hand_walking_sprite.texture = shovel_texture
+		on_hand_attack_sprite.texture = shovel_texture
+	
+	
 	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		return
-		# Get the mouse position in the world
+		
+	# Get the mouse position in the world
 	# Rotate the weapon towards the mouse
 	update_cooldown(delta)
 	var collected_gold_count = GameManager.Players[name.to_int()].collected_gold
@@ -147,30 +202,31 @@ func _process(delta):
 	if velocity.length() > 0:
 		if (Input.is_action_pressed("attack")):
 			if (on_hand_attack_sprite == lasso_texture):
-				shootLasso()
+#				shootLasso()
+				pass
 			else:
 				animation.play("WalkAttackRight")
 		else:
 			animation.play("WalkRight")
 		velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.animation = "walking"
-	else:
-		if (Input.is_action_pressed("attack")):
-			# print(on_hand_attack_sprite)
-			if (on_hand_attack_sprite.texture == lasso_texture):
-				print("SHOOTING LASSO")
-				shootLasso()
-				$Swoosh.play()
-			else:
-				animation.play("IdleAttackRight")
-				$SwingAudio.play()
-
-		else:
-			animation.play("IdleRight")
+#	else:
+#		if (Input.is_action_pressed("attack")):
+#			# print(on_hand_attack_sprite)
+#			if (on_hand_attack_sprite.texture == lasso_texture):
+#				print("SHOOTING LASSO")
+#				shootLasso()
+#				$Swoosh.play()
+#			else:
+#				animation.play("IdleAttackRight")
+#				$SwingAudio.play()
+#
+#		else:
+#			animation.play("IdleRight")
 		#$AnimatedSprite2D.play()
 
 	position = position.clamp(Vector2.ZERO, screen_size)
-
+		
 	_update_gold_ui()
 
 #	for i in range(3):
